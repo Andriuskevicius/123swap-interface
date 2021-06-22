@@ -1,6 +1,6 @@
 import React from 'react'
-import { Price } from '@pancakeswap-libs/sdk'
-import { SyncAltIcon, Text } from '@pancakeswap-libs/uikit'
+import { Price } from '@123swap/swap-sdk'
+import { SyncAltIcon, Text } from '@123swap/uikit'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
+import { ButtonMenu, ButtonMenuItem } from '@123swap/uikit'
 import useI18n from 'hooks/useI18n'
 
 const StyledNav = styled.div`
@@ -22,7 +22,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
         <ButtonMenuItem
           id="pool-nav-link"
           as="a"
-          href="https://www.binance.org/en/bridge?utm_source=PancakeSwap"
+          href="https://www.binance.org/en/bridge?utm_source=123Swap"
           target="_blank"
           rel="noreferrer noopener"
         >

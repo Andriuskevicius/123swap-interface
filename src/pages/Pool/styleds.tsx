@@ -1,4 +1,4 @@
-import { Text } from '@pancakeswap-libs/uikit'
+import { Text } from '@123swap/uikit'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`

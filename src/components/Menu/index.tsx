@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Menu as UikitMenu} from '@pancakeswap-libs/uikit'
+import { Menu as UikitMenu} from '@123swap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
@@ -16,7 +16,11 @@ const Menu: React.FC = (props) => {
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const priceData = useGetPriceData()
-  const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
+    // todo uncoment, when we have prices and deployed contract
+  // const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
+     const cakePriceUsd = 0.0
+
+
   const profile = useGetLocalProfile()
 
   return (
