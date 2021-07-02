@@ -12,7 +12,7 @@ type ApiResponse = {
   }
 }
 
-const api = 'https://api.pancakeswap.info/api/tokens'
+const api = 'https://123swap-info-api.vercel.app/api/tokens'
 
 const useGetPriceData = () => {
   const [data, setData] = useState<ApiResponse | null>(null)
