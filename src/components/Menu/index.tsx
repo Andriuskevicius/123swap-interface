@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import BigNumber from 'bignumber.js'
 import { Menu as UikitMenu} from '@123swap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
@@ -18,7 +19,7 @@ const Menu: React.FC = (props) => {
   const priceData = useGetPriceData()
     // todo uncoment, when we have prices and deployed contract
   // const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
-     const cakePriceUsd = 0.0
+     const cakePriceUsd = 0.123;
 
 
   const profile = useGetLocalProfile()
