@@ -5,6 +5,7 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { NetworkConnector } from './NetworkConnector'
+import {ALL_SUPPORTED_CHAIN_IDS} from "../constants/chains";
 
 const NETWORK_URL = process.env.REACT_APP_NETWORK_URL
 
@@ -26,6 +27,10 @@ export function getNetworkLibrary(): Web3Provider {
 
 export const injected = new InjectedConnector({
   supportedChainIds: [56, 97],
+})
+
+export const injectedUni = new InjectedConnector({
+  supportedChainIds: ALL_SUPPORTED_CHAIN_IDS,
 })
 
 export const bscConnector = new BscConnector({ supportedChainIds: [56] })
@@ -50,4 +55,6 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
+  [ConnectorNames.InjectedUni]: injectedUni,
+  [ConnectorNames.WalletConnectUni]: walletconnect,
 }

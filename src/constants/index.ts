@@ -1,6 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@123swap/swap-sdk'
 
 export const ROUTER_ADDRESS = '0x829AdDC0B20AA383533488fBf00f5bE2D8326793'
+export const ROUTER_UNI_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -32,6 +33,9 @@ export const ETH = new Token(
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
+  [ChainId.ETHMAINNET]: [WETH[ChainId.ETHMAINNET]],
+  [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
+  [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
 }
 
 // used to construct intermediary pairs for trading

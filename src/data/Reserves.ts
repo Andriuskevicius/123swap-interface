@@ -1,4 +1,8 @@
 import { TokenAmount, Pair, Currency } from '@123swap/swap-sdk'
+import { Pair as UniPair} from '@uniswap/v2-sdk'
+
+import { Token } from '@uniswap/sdk-core';
+
 import { useMemo } from 'react'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'
@@ -31,6 +35,14 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
   const pairAddresses = useMemo(
     () =>
       tokens.map(([tokenA, tokenB]) => {
+        if (localStorage.getItem("networkId") === "eth"){
+          if (tokenA && tokenB && !tokenA.equals(tokenB)){
+            const tA = new Token(tokenA.chainId, tokenA.address, tokenA.decimals);
+            const tB = new Token(tokenB.chainId, tokenB.address, tokenB.decimals);
+            return UniPair.getAddress(tA, tB)
+          }
+          return undefined
+        }
         return tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(tokenA, tokenB) : undefined
       }),
     [tokens]

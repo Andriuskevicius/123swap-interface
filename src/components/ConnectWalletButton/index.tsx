@@ -2,11 +2,13 @@ import React from 'react'
 import { Button, ButtonProps, useWalletModal} from '@123swap/uikit'
 import useI18n from 'hooks/useI18n'
 import useAuth from 'hooks/useAuth'
+import useNetwork from "../../hooks/useNetwork";
 
 const UnlockButton: React.FC<ButtonProps> = (props) => {
   const TranslateString = useI18n()
+  const { network, setNetwork } = useNetwork()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, network, setNetwork)
 
   return (
     <Button onClick={onPresentConnectModal} {...props}>

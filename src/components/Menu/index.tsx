@@ -5,6 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
+import useNetwork from 'hooks/useNetwork'
 import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
 import useAuth from 'hooks/useAuth'
@@ -16,6 +17,7 @@ const Menu: React.FC = (props) => {
   const { login, logout } = useAuth()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
+  const { network, setNetwork } = useNetwork()
   const priceData = useGetPriceData()
     // todo uncoment, when we have prices and deployed contract
   // const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
@@ -30,6 +32,8 @@ const Menu: React.FC = (props) => {
       account={account as string}
       login={login}
       logout={logout}
+      network={network}
+      setNetwork={setNetwork}
       isDark={isDark}
       toggleTheme={toggleTheme}
       currentLang={selectedLanguage?.code || ''}
