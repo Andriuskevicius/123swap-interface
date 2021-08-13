@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@123swap/swap-sdk'
+import { Currency, CurrencyAmount, currencyEquals, ETHER, ETHER_UNI, Token } from '@123swap/swap-sdk'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import styled from 'styled-components'
@@ -169,7 +169,12 @@ export default function CurrencyList({
   fixedListRef?: MutableRefObject<FixedSizeList | undefined>
   showETH: boolean
 }) {
-  const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : [...currencies]), [currencies, showETH])
+  let ether: Currency = ETHER;
+  if (localStorage.getItem("networkId") === "eth") {
+      ether = ETHER_UNI
+  }
+
+  const itemData = useMemo(() => (showETH ? [ether, ...currencies] : [...currencies]), [currencies, showETH, ether])
 
   const Row = useCallback(
     ({ data, index, style }) => {

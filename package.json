@@ -4,7 +4,7 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
-    "@123swap/swap-sdk": "^2.3.7",
+    "@123swap/swap-sdk": "^2.3.11",
     "@123swap/uikit": "^0.23.20",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",

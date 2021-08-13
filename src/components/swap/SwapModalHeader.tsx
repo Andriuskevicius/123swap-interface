@@ -4,7 +4,7 @@ import { Trade, TradeType } from '@123swap/swap-sdk'
 import { Button, Text } from '@123swap/uikit'
 import { ArrowDown, AlertTriangle } from 'react-feather'
 import { Field } from '../../state/swap/actions'
-import { isAddress, shortenAddress } from '../../utils'
+import {isAddress, renderCurSymbol, shortenAddress} from '../../utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
@@ -57,7 +57,7 @@ export default function SwapModalHeader({
         </RowFixed>
         <RowFixed gap="0px">
           <Text fontSize="24px" style={{ marginLeft: '10px', fontWeight: 500 }}>
-            {trade.inputAmount.currency.symbol}
+            {renderCurSymbol(trade.inputAmount.currency.symbol)}
           </Text>
         </RowFixed>
       </RowBetween>
@@ -83,7 +83,7 @@ export default function SwapModalHeader({
         </RowFixed>
         <RowFixed gap="0px">
           <Text fontSize="24px" style={{ marginLeft: '10px', fontWeight: 500 }}>
-            {trade.outputAmount.currency.symbol}
+            {renderCurSymbol(trade.outputAmount.currency.symbol)}
           </Text>
         </RowFixed>
       </RowBetween>
@@ -103,7 +103,7 @@ export default function SwapModalHeader({
           <PriceInfoText>
             {`Output is estimated. You will receive at least `}
             <span>
-              {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
+              {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {renderCurSymbol(trade.outputAmount.currency.symbol)}
             </span>
             {' or the transaction will revert.'}
           </PriceInfoText>
@@ -111,7 +111,7 @@ export default function SwapModalHeader({
           <PriceInfoText>
             {`Input is estimated. You will sell at most `}
             <span>
-              {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
+              {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {renderCurSymbol(trade.inputAmount.currency.symbol)}
             </span>
             {' or the transaction will revert.'}
           </PriceInfoText>

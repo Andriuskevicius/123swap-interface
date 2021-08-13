@@ -16,6 +16,7 @@ import QuestionHelper from '../QuestionHelper'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
+import {renderCurSymbol} from "../../utils/index";
 
 export default function SwapModalFooter({
   trade,
@@ -84,8 +85,8 @@ export default function SwapModalFooter({
             </Text>
             <Text fontSize="14px" marginLeft="4px">
               {trade.tradeType === TradeType.EXACT_INPUT
-                ? trade.outputAmount.currency.symbol
-                : trade.inputAmount.currency.symbol}
+                ? renderCurSymbol(trade.outputAmount.currency.symbol)
+                : renderCurSymbol(trade.inputAmount.currency.symbol)}
             </Text>
           </RowFixed>
         </RowBetween>
@@ -109,7 +110,7 @@ export default function SwapModalFooter({
             />
           </RowFixed>
           <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
+            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${renderCurSymbol(trade.inputAmount.currency.symbol)}` : '-'}
           </Text>
         </RowBetween>
       </AutoColumn>

@@ -1,7 +1,10 @@
+
 import React from 'react'
 import { Price } from '@123swap/swap-sdk'
 import { SyncAltIcon, Text } from '@123swap/uikit'
+import invert from "polished/lib/color/invert";
 import { StyledBalanceMaxMini } from './styleds'
+import {renderCurSymbol} from "../../utils/index";
 
 interface TradePriceProps {
   price?: Price
@@ -14,8 +17,8 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
 
   const show = Boolean(price?.baseCurrency && price?.quoteCurrency)
   const label = showInverted
-    ? `${price?.quoteCurrency?.symbol} per ${price?.baseCurrency?.symbol}`
-    : `${price?.baseCurrency?.symbol} per ${price?.quoteCurrency?.symbol}`
+    ? `${renderCurSymbol(price?.quoteCurrency?.symbol)} per ${renderCurSymbol(price?.baseCurrency?.symbol)}`
+    : `${renderCurSymbol(price?.baseCurrency?.symbol)} per ${renderCurSymbol(price?.quoteCurrency?.symbol)}`
 
   return (
     <Text fontSize="14px" style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>

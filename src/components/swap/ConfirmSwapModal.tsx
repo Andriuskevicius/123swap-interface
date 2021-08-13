@@ -6,6 +6,7 @@ import TransactionConfirmationModal, {
 } from '../TransactionConfirmationModal'
 import SwapModalFooter from './SwapModalFooter'
 import SwapModalHeader from './SwapModalHeader'
+import {renderCurSymbol} from "../../utils/index";
 
 /**
  * Returns true if the trade requires a confirmation of details before we can submit it
@@ -78,8 +79,8 @@ export default function ConfirmSwapModal({
 
   // text to show while loading
   const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6)} ${
-    trade?.inputAmount?.currency?.symbol
-  } for ${trade?.outputAmount?.toSignificant(6)} ${trade?.outputAmount?.currency?.symbol}`
+    renderCurSymbol(trade?.inputAmount?.currency?.symbol)
+  } for ${trade?.outputAmount?.toSignificant(6)} ${renderCurSymbol(trade?.outputAmount?.currency?.symbol)}`
 
   const confirmationContent = useCallback(
     () =>

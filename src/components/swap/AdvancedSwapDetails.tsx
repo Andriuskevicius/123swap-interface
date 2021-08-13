@@ -11,6 +11,7 @@ import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { SectionBreak } from './styleds'
 import SwapRoute from './SwapRoute'
+import {renderCurSymbol} from "../../utils/index";
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
@@ -36,9 +37,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           <RowFixed>
             <Text fontSize="14px">
               {isExactIn
-                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
+                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${renderCurSymbol(trade.outputAmount.currency.symbol)}` ??
                   '-'
-                : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
+                : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${renderCurSymbol(trade.inputAmount.currency.symbol)}` ??
                   '-'}
             </Text>
           </RowFixed>
@@ -67,7 +68,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             />
           </RowFixed>
           <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+            {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${renderCurSymbol(trade.inputAmount.currency.symbol)}` : '-'}
           </Text>
         </RowBetween>
       </CardBody>

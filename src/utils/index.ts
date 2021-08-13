@@ -4,7 +4,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@123swap/swap-sdk'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER, ETHER_UNI } from '@123swap/swap-sdk'
 import { ROUTER_ADDRESS, ROUTER_UNI_ADDRESS } from '../constants'
 import { TokenAddressMap } from '../state/lists/hooks'
 
@@ -102,7 +102,14 @@ export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
 }
 
+export function renderCurSymbol(currency?: string): string {
+  if (localStorage.getItem("networkId") === "eth" && currency === "BNB"){
+    return "ETH"
+  }
+  return currency || ""
+}
+
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === ETHER) return true
+  if (currency === ETHER || currency === ETHER_UNI) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }

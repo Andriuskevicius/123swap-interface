@@ -7,7 +7,7 @@ import {
 } from '../constants'
 
 import { Field } from '../state/swap/actions'
-import { basisPointsToPercent } from './index'
+import {basisPointsToPercent, renderCurSymbol} from './index'
 
 const BASE_FEE = new Percent(JSBI.BigInt(20), JSBI.BigInt(10000))
 const ONE_HUNDRED_PERCENT = new Percent(JSBI.BigInt(10000), JSBI.BigInt(10000))
@@ -72,10 +72,10 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
     return ''
   }
   return inverted
-    ? `${trade.executionPrice.invert().toSignificant(6)} ${trade.inputAmount.currency.symbol} / ${
-        trade.outputAmount.currency.symbol
+    ? `${trade.executionPrice.invert().toSignificant(6)} ${renderCurSymbol(trade.inputAmount.currency.symbol)} / ${
+        renderCurSymbol(trade.outputAmount.currency.symbol)
       }`
-    : `${trade.executionPrice.toSignificant(6)} ${trade.outputAmount.currency.symbol} / ${
-        trade.inputAmount.currency.symbol
+    : `${trade.executionPrice.toSignificant(6)} ${renderCurSymbol(trade.outputAmount.currency.symbol)} / ${
+        renderCurSymbol(trade.inputAmount.currency.symbol)
       }`
 }

@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals } from '@123swap/swap-sdk'
+import { Currency, ETHER, ETHER_UNI, Token, currencyEquals } from '@123swap/swap-sdk'
 import { useMemo } from 'react'
 import { useSelectedTokenList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
@@ -103,7 +103,8 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const isBNB = currencyId?.toUpperCase() === 'BNB'
+  const isBNB = currencyId?.toUpperCase() === 'BNB' || currencyId?.toUpperCase() === 'ETH'
   const token = useToken(isBNB ? undefined : currencyId)
-  return isBNB ? ETHER : token
+  const ether  = localStorage.getItem("networkId") === "eth" ? ETHER_UNI : ETHER
+  return isBNB ? ether : token
 }
