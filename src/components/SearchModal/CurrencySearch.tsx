@@ -32,6 +32,7 @@ interface CurrencySearchProps {
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
   showCommonBases?: boolean
+  includedTokenList?: string[]
   onChangeList: () => void
 }
 
@@ -40,6 +41,7 @@ export function CurrencySearch({
   onCurrencySelect,
   otherSelectedCurrency,
   showCommonBases,
+  includedTokenList,
   onDismiss,
   isOpen,
   onChangeList,
@@ -51,7 +53,18 @@ export function CurrencySearch({
   const fixedList = useRef<FixedSizeList>()
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [invertSearchOrder, setInvertSearchOrder] = useState<boolean>(false)
-  const allTokens = useAllTokens()
+
+  let allTokens = useAllTokens();
+
+  if (includedTokenList !== undefined){
+    const filteredTokens = {};
+    Object.keys(allTokens).forEach((key, index) => {
+        if (includedTokenList.includes(key)){
+            filteredTokens[key] = allTokens[key]
+        }
+    });
+    allTokens = filteredTokens
+  }
 
   // if they input an address, use it
   const isAddressSearch = isAddress(searchQuery)

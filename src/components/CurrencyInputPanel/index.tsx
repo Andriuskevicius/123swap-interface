@@ -82,6 +82,7 @@ interface CurrencyInputPanelProps {
   otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
+  includedTokenList?: string[]
 }
 export default function CurrencyInputPanel({
   value,
@@ -98,6 +99,7 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
+  includedTokenList
 }: CurrencyInputPanelProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
@@ -183,6 +185,7 @@ export default function CurrencyInputPanel({
           selectedCurrency={currency}
           otherSelectedCurrency={otherCurrency}
           showCommonBases={showCommonBases}
+          includedTokenList={includedTokenList}
         />
       )}
     </InputPanel>

@@ -79,3 +79,15 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
         renderCurSymbol(trade.inputAmount.currency.symbol)
       }`
 }
+
+export function calculateTokenAmount(amount, currency, prices){
+  let exchange_rate = Number(1.0);
+
+  prices.forEach(function (price) {
+    if (price.currency === currency?.symbol){
+      exchange_rate = price.rate
+    }
+  });
+
+  return Number(amount) * Number(exchange_rate) / Number(0.075);
+}

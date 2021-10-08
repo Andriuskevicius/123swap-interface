@@ -35,7 +35,11 @@ const config: MenuEntry[] = [
             },
         ]
     },
-
+    {
+        label: "123tokensale",
+        icon: "IfoIcon",
+        href: "/tokensale",
+    },
     {
         label: "123bridge",
         icon: "BridgeIcon",

@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import { LangType } from '@123swap/uikit'
@@ -19,6 +19,9 @@ import { TranslationsContext } from '../hooks/TranslationsContext'
 
 import Menu from '../components/Menu'
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
+import Tokensale from "./Tokensale/index";
+import TokensaleHistory from "./TokensaleHistory/index";
+import TokensaleReferrals from "./TokensaleReferrals/index";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -120,11 +123,19 @@ export default function App() {
     localStorage.setItem(CACHE_KEY, langObject.code)
   }
 
+  const location = useLocation();
+    useEffect(() => {
+      const params = new URLSearchParams(location.search);
+      const referrer = params.get('referrer');
+      if (referrer != null){
+        localStorage.setItem("referrer", referrer);
+      }
+  }, [location]);
+
   useGetDocumentTitlePrice()
 
   return (
-    <Suspense fallback={null}>
-      <HashRouter>
+
         <AppWrapper>
           <LanguageContext.Provider
             value={{ selectedLanguage, setSelectedLanguage: handleLanguageSelect, translatedLanguage, setTranslatedLanguage }}
@@ -146,6 +157,10 @@ export default function App() {
                       <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                       <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
 
+                      <Route exact path="/tokensale" component={Tokensale} />
+                      <Route exact path="/history" component={TokensaleHistory} />
+                      <Route exact path="/referrals" component={TokensaleReferrals} />
+
                       <Route component={RedirectPathToSwapOnly} />
                     </Switch>
                   </Web3ReactManager>
@@ -155,7 +170,5 @@ export default function App() {
             </TranslationsContext.Provider>
           </LanguageContext.Provider>
         </AppWrapper>
-      </HashRouter>
-    </Suspense>
   )
 }
