@@ -41,7 +41,7 @@ export default function TokensaleReferrals() {
   const TranslateString = useI18n()
     const [referrerData, setReferrerData] = useState(new ReferrerReturn());
 
-    const url = `https://exchange.123swap.finance/#/tokensale?referrer=${referrerData.code}`;
+    const url = `${BACKEND_URL}/#/tokensale?referrer=${referrerData.code}`;
 
     useEffect(() => {
 
