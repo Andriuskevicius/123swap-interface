@@ -2167,6 +2167,14 @@
       "symbol": "REP",
       "decimals": 18,
       "logoURI": "https://raw.githubusercontent.com/compound-finance/token-list/master/assets/asset_REP.svg"
+    },
+    {
+      "name": "BUSD Token",
+      "symbol": "BUSD",
+      "address": "0x4Fabb145d64652a948d72533023f6E7A623C7C53",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://exchange.123swap.finance/images/coins/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
     }
   ]
 }

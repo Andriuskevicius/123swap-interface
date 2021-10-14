@@ -51,11 +51,6 @@ const config: MenuEntry[] = [
         href: "#",
     },
     {
-        label: "123lend&borrow",
-        icon: "BorrowIcon",
-        href: "#",
-    },
-    {
         label: "123gov",
         icon: "GovIcon",
         href: "#",

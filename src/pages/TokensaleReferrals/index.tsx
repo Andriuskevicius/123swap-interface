@@ -41,7 +41,7 @@ export default function TokensaleReferrals() {
   const TranslateString = useI18n()
     const [referrerData, setReferrerData] = useState(new ReferrerReturn());
 
-    const url = `${BACKEND_URL}/#/tokensale?referrer=${referrerData.code}`;
+    const url = `https://exchange.123swap.finance/#/tokensale?referrer=${referrerData.code}`;
 
     useEffect(() => {
 
@@ -66,8 +66,8 @@ export default function TokensaleReferrals() {
         <Details>
           <Heading mb="8px">Refferal program</Heading>
             <Text color="textSubtle" fontSize="14px">
-              Share your unique link, refer friends and gain 10% 123swap tokens your friends
-              have bought. Your friends will also get 5% bonus for using your link.
+              Share your unique link, refer friends and gain 5% 123swap tokens your friends
+              have bought. Your friends will also get 2.5% bonus for using your link.
             </Text>
         </Details>
       </Flex>
@@ -86,7 +86,7 @@ export default function TokensaleReferrals() {
                       <a rel="noreferrer" target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}>
                         <Button type="button"><i className="fa fa-facebook"/>Facebook</Button>
                       </a>
-                      <a rel="noreferrer" href={`http://twitter.com/share?text=My%20Entry%20Money%20Tokensale%20referral%20link:&url=${url}`}>
+                      <a rel="noreferrer" href={`http://twitter.com/share?text=My%20123swap%20Tokensale%20referral%20link:&url=${url}`}>
                         <Button type="button" className="btn btn-twitter"><i className="fa fa-twitter"/>Twitter</Button>
                       </a>
                       <a rel="noreferrer" href={`mailto:?subject=123swap Tokensale Referral&body=My 123swap Tokensale referral link: ${url}`}>
@@ -100,11 +100,11 @@ export default function TokensaleReferrals() {
 
                     <Text fontSize="18px" fontWeight="600">{TranslateString(88, 'Your bonuses')}</Text>
                      <RowBetween align="center">
-                        <Text fontSize="16px">{TranslateString(88, 'Referred bonus (5%):')}</Text>
+                        <Text fontSize="16px">{TranslateString(88, 'Referred bonus (2.5%):')}</Text>
                         <Text fontSize="16px" style={{fontWeight:600}}>{parseFloat(referrerData.referrer_bonus).toPrecision(3)}</Text>
                       </RowBetween>
                      <RowBetween align="center">
-                        <Text fontSize="16px">{TranslateString(88, 'Referring bonus (10%):')}</Text>
+                        <Text fontSize="16px">{TranslateString(88, 'Referring bonus (5%):')}</Text>
                         <Text fontSize="16px" style={{fontWeight:600}}>{parseFloat(referrerData.referring_bonus).toPrecision(3)}</Text>
                       </RowBetween>
                 </div>)}

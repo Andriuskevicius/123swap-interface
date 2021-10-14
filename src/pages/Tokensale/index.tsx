@@ -20,7 +20,7 @@ import useI18n from 'hooks/useI18n'
 import AppBody from '../AppBody'
 import CurrencyInputPanel from "../../components/CurrencyInputPanel/index";
 import {tryParseAmount, useDerivedSwapInfo, useSwapState} from "../../state/swap/hooks";
-import {calculateTokenAmount} from "../../utils/prices";
+import {calculateTokenAmount, calculateMinimumAmountValue} from "../../utils/prices";
 
 const StyledPageHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -42,6 +42,9 @@ export default function Tokensale() {
     const [amount, setAmount] = useState("0");
     const [tokenAmount, setTokenAmount] = useState(0);
     const [prices, setPrices] = useState([]);
+    const [minimumAmount, setMinimumAmount] = useState(133333);
+    const [minimumAmountValue, setMinimumAmountValue] = useState("0");
+    const [maximumAmount, setMaximumAmount] = useState(18000000);
 
     useEffect(() => {
       axios.get(`${BACKEND_URL}/presale/prices`).then((response) => {
@@ -105,11 +108,15 @@ export default function Tokensale() {
       setAmount(value)
       const ta = calculateTokenAmount(value, currency, prices)
       setTokenAmount(ta)
+        const mav = calculateMinimumAmountValue(value, currency, prices).toPrecision(5)
+      setMinimumAmountValue(mav)
     },
-    [setAmount, setTokenAmount, currency, prices]
+    [setAmount, setTokenAmount, currency, prices, setMinimumAmountValue]
   )
 
-  const [approveACallback] = useTransferCallback(PRESALE_RECEIVER_ADDRESS, tryParseAmount(amount, currency));
+  const currencyAmount = tryParseAmount(amount, currency);
+
+  const [approveACallback] = useTransferCallback(PRESALE_RECEIVER_ADDRESS, currencyAmount);
     
   return (
     <>
@@ -118,7 +125,13 @@ export default function Tokensale() {
         <StyledPageHeader>
           <Flex alignItems="center">
             <Details>
-              <Heading mb="8px">Tokensale</Heading>
+              <Heading mb="8px">Tokensale (PRIVATE)</Heading>
+                <Text color="textSubtle" fontSize="14px">
+                   Minimum buy amount 133333 tokens
+                </Text>
+                <Text color="textSubtle" fontSize="14px">
+                  Maximum (total amount) is limited to 18.000.000 tokens
+                </Text>
                 <Text color="textSubtle" fontSize="14px">
                   Buy private sale tokens now for $0.075 per token
                 </Text>
@@ -142,7 +155,9 @@ export default function Tokensale() {
                         "0xdAC17F958D2ee523a2206206994597C13D831ec7",
                         "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
                         "0x55d398326f99059fF775485246999027B3197955",
-                        "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",]}
+                        "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+                        "0x4Fabb145d64652a948d72533023f6E7A623C7C53",
+                        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",]}
 
                     id="swap-currency-input"
                   />
@@ -150,15 +165,19 @@ export default function Tokensale() {
                     <ConnectWalletButton width="100%" />
                 ) : !currency ? (
                     <Button id="join-pool-button" disabled>{TranslateString(168, 'Select currency')}</Button>
-                ) : !tryParseAmount(amount,currency) ? (
+                ) : !currencyAmount ? (
                     <Button id="join-pool-button" disabled>{TranslateString(168, 'Enter an amount')}</Button>
+                ) : (minimumAmount > tokenAmount) ? (
+                    <Button id="join-pool-button" disabled>{TranslateString(168, `Amount has to bee at least ${minimumAmountValue}`)}</Button>
+                ) : (maximumAmount < tokenAmount) ? (
+                    <Button id="join-pool-button" disabled>{TranslateString(168, `Token amount can't reach ${maximumAmount}`)}</Button>
                 ) : (
                     <Button id="join-pool-button" onClick={approveACallback}>{TranslateString(168, 'Buy tokens')}</Button>
                 )}
 
             <RowBetween align="center">
                 <Text fontSize="16px">{TranslateString(88, 'Token amount')}</Text>
-                <Text fontSize="16px">~{tokenAmount}</Text>
+                <Text fontSize="16px">{tokenAmount}</Text>
               </RowBetween>
             </AutoColumn>
         </CardBody>

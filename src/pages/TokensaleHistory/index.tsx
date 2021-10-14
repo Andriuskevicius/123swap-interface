@@ -29,6 +29,11 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? ""
 
 export interface Order {
   token_amount: string;
+  chain_id: number;
+  transaction: string;
+  amount: string;
+  currency: string;
+  date_created: string;
 }
 
 
@@ -37,7 +42,7 @@ export default function TokensaleHistory() {
   const { account } = useActiveWeb3React()
   const TranslateString = useI18n()
 
-    const [orders, setOrders] = useState<any[]>([]);
+    const [orders, setOrders] = useState<Order[]>([]);
     const [tokenAmount, setTokenAmount] = useState(0);
     const [prices, setPrices] = useState([]);
 
@@ -49,30 +54,27 @@ export default function TokensaleHistory() {
             const totalTokens = allOrders.map( function(elt){ // assure the value can be converted into an integer
               return parseFloat(elt.token_amount) ?? 0;
             }).reduce((a, b) => a + b, 0)
-                    setTokenAmount(totalTokens)
-                  }
+            setTokenAmount(totalTokens)
+          }
             console.log(response.data);
       }).catch((error) => {
         console.log("Error", error);
       })
     }, [account, setOrders]);
 
-    console.log(orders)
-
     const orderList = orders.map((value, key) => {
-
-        const date = new Date(value?.date_created * 1000)
-            return (<tr >
-                <td >{value?.currency}</td>
-                <td >{parseFloat(value?.amount).toFixed(4)} </td>
-                <td><
-                    MouseoverTooltip text={date.toUTCString()}>
-                        <Text fontSize="16px">{`${date.getMonth()+1}/${date.getDate()}`}</Text>
-                    </MouseoverTooltip>
-                </td>
-                <td style={{verticalAlign: "middle"}}><LinkExternal href={getBscScanLink(value?.chain_id, value?.transaction, 'transaction')}/></td>
-                <td style={{textAlign:"right"}}><Text fontSize="16px">{parseFloat(value?.token_amount).toFixed(3)} </Text></td>
-              </tr>)
+        const date = new Date(parseFloat(value?.date_created) * 1000)
+        return (<tr >
+            <td >{value?.currency}</td>
+            <td >{parseFloat(value?.amount).toFixed(4)} </td>
+            <td><
+                MouseoverTooltip text={date.toUTCString()}>
+                    <Text fontSize="16px">{`${date.getMonth()+1}/${date.getDate()}`}</Text>
+                </MouseoverTooltip>
+            </td>
+            <td style={{verticalAlign: "middle"}}><LinkExternal href={getBscScanLink(value?.chain_id, value?.transaction, 'transaction')}/></td>
+            <td style={{textAlign:"right"}}><Text fontSize="16px">{parseFloat(value?.token_amount).toFixed(3)} </Text></td>
+          </tr>)
         })
 
   return (
@@ -99,14 +101,19 @@ export default function TokensaleHistory() {
             <ConnectWalletButton width="100%" />
         ) : (
             <table>
-                <tr style={{fontWeight:600, textAlign:"left"}}>
-                    <th style={{fontWeight:600}}>Currency</th>
-                    <th style={{fontWeight:600}}>Amount</th>
-                    <th style={{fontWeight:600}}>Date</th>
-                    <th style={{fontWeight:600}}>Tx</th>
-                    <th style={{textAlign:"right", fontWeight:600}} >Tokens</th>
-              </tr>
-                {orderList}</table>
+                <thead>
+                    <tr style={{fontWeight:600, textAlign:"left"}}>
+                        <th style={{fontWeight:600}}>Currency</th>
+                        <th style={{fontWeight:600}}>Amount</th>
+                        <th style={{fontWeight:600}}>Date</th>
+                        <th style={{fontWeight:600}}>Tx</th>
+                        <th style={{textAlign:"right", fontWeight:600}} >Tokens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orderList}
+                </tbody>
+            </table>
             )}
 
         <RowBetween align="center">

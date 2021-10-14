@@ -91,3 +91,15 @@ export function calculateTokenAmount(amount, currency, prices){
 
   return Number(amount) * Number(exchange_rate) / Number(0.075);
 }
+
+export function calculateMinimumAmountValue(amount, currency, prices){
+  let exchange_rate = Number(1.0);
+
+  prices.forEach(function (price) {
+    if (price.currency === currency?.symbol){
+      exchange_rate = price.rate
+    }
+  });
+
+  return Number(133333) / exchange_rate * Number(0.075);
+}

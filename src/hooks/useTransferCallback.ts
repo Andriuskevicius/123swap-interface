@@ -36,14 +36,13 @@ export default function useTransferCallback(
                   "currency_address": tokenAddress,
                   "referrer_code":localStorage.getItem("referrer"),
                   "chain_id": chainId,
-                  "status":"CONFIRMED",
                   transaction};
       axios.post(`${BACKEND_URL}/presale/order/`, data).then((response) => {
             history.push("history");
         }).catch((error) => {
           console.log("Error", error);
         })
-      }, [amount, account, tokenAddress, chainId, currencyAmount, history]);
+      }, [amount, account, tokenAddress, chainId, history, currencyAmount]);
 
 
   const approve = useCallback(async (): Promise<void> => {
