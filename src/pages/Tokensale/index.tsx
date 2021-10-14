@@ -45,6 +45,7 @@ export default function Tokensale() {
     const [minimumAmount, setMinimumAmount] = useState(133333);
     const [minimumAmountValue, setMinimumAmountValue] = useState("0");
     const [maximumAmount, setMaximumAmount] = useState(18000000);
+    const [isMinimumBought, setIsMinimumBought] = useState(false);
 
     useEffect(() => {
       axios.get(`${BACKEND_URL}/presale/prices`).then((response) => {
@@ -53,6 +54,22 @@ export default function Tokensale() {
         console.log("Error", error);
       })
     }, []);
+
+     useEffect(() => {
+      axios.get(`${BACKEND_URL}/presale/order/?address=${account}`).then((response) => {
+          const allOrders = response.data as Array<any>;
+          if (allOrders.length){
+            const totalTokens = allOrders.map( function(elt){ // assure the value can be converted into an integer
+              return parseFloat(elt.token_amount) ?? 0;
+            }).reduce((a, b) => a + b, 0);
+            if (totalTokens >= 133000){
+                setIsMinimumBought(true)
+            }
+          }
+      }).catch((error) => {
+        console.log("Error", error);
+      })
+    }, [account, setIsMinimumBought]);
 
   const trackedTokenPairs = useTrackedTokenPairs()
   const tokenPairsWithLiquidityTokens = useMemo(
@@ -167,7 +184,7 @@ export default function Tokensale() {
                     <Button id="join-pool-button" disabled>{TranslateString(168, 'Select currency')}</Button>
                 ) : !currencyAmount ? (
                     <Button id="join-pool-button" disabled>{TranslateString(168, 'Enter an amount')}</Button>
-                ) : (minimumAmount > tokenAmount) ? (
+                ) : ((minimumAmount > tokenAmount) && !isMinimumBought)? (
                     <Button id="join-pool-button" disabled>{TranslateString(168, `Amount has to bee at least ${minimumAmountValue}`)}</Button>
                 ) : (maximumAmount < tokenAmount) ? (
                     <Button id="join-pool-button" disabled>{TranslateString(168, `Token amount can't reach ${maximumAmount}`)}</Button>
