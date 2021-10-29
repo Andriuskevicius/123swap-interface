@@ -1,4 +1,4 @@
-import { Currency, ETHER, ETHER_UNI, Token } from '@123swap/swap-sdk'
+import { Currency, ETHER, ETHER_UNI, MATIC, Token } from '@123swap/swap-sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
@@ -51,6 +51,10 @@ export default function CurrencyLogo({
 
   if (currency === ETHER_UNI) {
     return <StyledBnbLogo src="/images/coins/eth.png" size={size} style={style} />
+  }
+
+  if (currency === MATIC) {
+    return <StyledBnbLogo src="/images/coins/matic.png" size={size} style={style} />
   }
 
   return (currency as any)?.symbol ? (

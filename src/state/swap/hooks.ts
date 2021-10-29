@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, ETHER_UNI, JSBI, Token, TokenAmount, Trade } from '@123swap/swap-sdk'
+import { Currency, CurrencyAmount, ETHER, ETHER_UNI, MATIC, JSBI, Token, TokenAmount, Trade } from '@123swap/swap-sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : (currency === ETHER_UNI || currency === ETHER) ? 'BNB' : '',
+          currencyId: currency instanceof Token ? currency.address : (currency === ETHER_UNI || currency === ETHER || currency === MATIC) ? 'BNB' : '',
         })
       )
     },

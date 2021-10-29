@@ -1,4 +1,4 @@
-import {Currency, CurrencyAmount, ETHER, ETHER_UNI, JSBI, Token, TokenAmount} from '@123swap/swap-sdk'
+import {Currency, CurrencyAmount, ETHER, ETHER_UNI, MATIC, JSBI, Token, TokenAmount} from '@123swap/swap-sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useAllTokens } from '../../hooks/Tokens'
@@ -111,7 +111,7 @@ export function useCurrencyBalances(
       currencies?.map(currency => {
         if (!account || !currency) return undefined
         if (currency instanceof Token) return tokenBalances[currency.address]
-        if (currency === ETHER || currency === ETHER_UNI) return ethBalance[account]
+        if (currency === ETHER || currency === ETHER_UNI || currency === MATIC) return ethBalance[account]
         return undefined
       }) ?? [],
     [account, currencies, ethBalance, tokenBalances]

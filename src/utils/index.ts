@@ -4,8 +4,8 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER, ETHER_UNI } from '@123swap/swap-sdk'
-import { ROUTER_ADDRESS, ROUTER_UNI_ADDRESS } from '../constants'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER, ETHER_UNI, MATIC } from '@123swap/swap-sdk'
+import {ROUTER_ADDRESS, ROUTER_MATIC_ADDRESS, ROUTER_UNI_ADDRESS} from '../constants'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
@@ -19,6 +19,8 @@ export function isAddress(value: any): string | false {
 
 const BSCSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: 'bscscan.com',
+  [ChainId.POLYON_MAINET]: 'polygonscan.com',
+  [ChainId.POLYON_TESTNET]: 'mumbai.polygonscan.com',
   [ChainId.BSCTESTNET]: 'testnet.bscscan.com',
   [ChainId.ETHMAINNET]: 'etherscan.com',
   [ChainId.ROPSTEN]: 'ropsten.etherscan.io',
@@ -95,6 +97,9 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
   if (localStorage.getItem("networkId") === "eth"){
       return getContract(ROUTER_UNI_ADDRESS, IUniswapV2Router02ABI, library, account)
   }
+  if (localStorage.getItem("networkId") === "polygon"){
+      return getContract(ROUTER_MATIC_ADDRESS, IUniswapV2Router02ABI, library, account)
+  }
   return getContract(ROUTER_ADDRESS, IUniswapV2Router02ABI, library, account)
 }
 
@@ -106,10 +111,13 @@ export function renderCurSymbol(currency?: string): string {
   if (localStorage.getItem("networkId") === "eth" && currency === "BNB"){
     return "ETH"
   }
+  if (localStorage.getItem("networkId") === "polygon" && currency === "BNB"){
+    return "MATIC"
+  }
   return currency || ""
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-  if (currency === ETHER || currency === ETHER_UNI) return true
+  if (currency === ETHER || currency === ETHER_UNI || currency === MATIC) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }

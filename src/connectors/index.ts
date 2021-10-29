@@ -4,6 +4,7 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
+import {ChainId} from "@123swap/swap-sdk";
 import { NetworkConnector } from './NetworkConnector'
 import {ALL_SUPPORTED_CHAIN_IDS} from "../constants/chains";
 
@@ -26,7 +27,11 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [56, 97],
+  supportedChainIds: [ChainId.BSCTESTNET, ChainId.MAINNET],
+})
+
+export const injectedPolygon = new InjectedConnector({
+  supportedChainIds: [137, 80001],
 })
 
 export const injectedUni = new InjectedConnector({
@@ -57,4 +62,6 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.BSC]: bscConnector,
   [ConnectorNames.InjectedUni]: injectedUni,
   [ConnectorNames.WalletConnectUni]: walletconnect,
+  [ConnectorNames.WalletConnectPolygon]: walletconnect,
+  [ConnectorNames.InjectedPolygon]: injectedPolygon,
 }

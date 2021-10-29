@@ -2,6 +2,7 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@123swap/swap-sdk'
 
 export const ROUTER_ADDRESS = '0x829AdDC0B20AA383533488fBf00f5bE2D8326793'
 export const ROUTER_UNI_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+export const ROUTER_MATIC_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -36,6 +37,8 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.ETHMAINNET]: [WETH[ChainId.ETHMAINNET]],
   [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
+  [ChainId.POLYON_MAINET]: [WETH[ChainId.POLYON_MAINET]],
+  [ChainId.POLYON_TESTNET]: [WETH[ChainId.POLYON_TESTNET]],
 }
 
 // used to construct intermediary pairs for trading

@@ -1,6 +1,6 @@
-import { TokenAmount, Pair, Currency } from '@123swap/swap-sdk'
 import { Pair as UniPair} from '@uniswap/v2-sdk'
-
+import { Pair as PolygonPair} from 'quickswap-sdk'
+import { TokenAmount, Pair, Currency } from '@123swap/swap-sdk'
 import { Token } from '@uniswap/sdk-core';
 
 import { useMemo } from 'react'
@@ -40,6 +40,15 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
             const tA = new Token(tokenA.chainId, tokenA.address, tokenA.decimals);
             const tB = new Token(tokenB.chainId, tokenB.address, tokenB.decimals);
             return UniPair.getAddress(tA, tB)
+          }
+          return undefined
+        }
+
+        if (localStorage.getItem("networkId") === "polygon"){
+          if (tokenA && tokenB && !tokenA.equals(tokenB)){
+            const tA = new Token(tokenA.chainId, tokenA.address, tokenA.decimals);
+            const tB = new Token(tokenB.chainId, tokenB.address, tokenB.decimals);
+            return PolygonPair.getAddress(tA, tB)
           }
           return undefined
         }
