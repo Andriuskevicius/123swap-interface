@@ -10,6 +10,7 @@ import WETH_ABI from '../constants/abis/weth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
+import {getNetworkMulticallContractAddress, getNetworkWrappedCurrency} from "../connectors/utils";
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -32,7 +33,7 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? WETH[chainId].address : undefined, WETH_ABI, withSignerIfPossible)
+  return useContract(chainId ? getNetworkWrappedCurrency(chainId).address : undefined, WETH_ABI, withSignerIfPossible)
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
@@ -61,5 +62,5 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 
 export function useMulticallContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
+  return useContract(chainId && getNetworkMulticallContractAddress(chainId), MULTICALL_ABI, false)
 }

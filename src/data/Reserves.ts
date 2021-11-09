@@ -1,7 +1,7 @@
 import { Pair as UniPair} from '@uniswap/v2-sdk'
 import { Pair as PolygonPair} from 'quickswap-sdk'
-import { TokenAmount, Pair, Currency } from '@123swap/swap-sdk'
-import { Token } from '@uniswap/sdk-core';
+import {TokenAmount, Pair, Currency, ChainId} from '@123swap/swap-sdk'
+import { Token as UniToken } from '@uniswap/sdk-core';
 
 import { useMemo } from 'react'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
@@ -10,6 +10,7 @@ import { useActiveWeb3React } from '../hooks'
 
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
+import {getNetworkPairClass, getNetworkTokenClass} from "../connectors/utils";
 
 const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
 
@@ -35,26 +36,19 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
   const pairAddresses = useMemo(
     () =>
       tokens.map(([tokenA, tokenB]) => {
-        if (localStorage.getItem("networkId") === "eth"){
-          if (tokenA && tokenB && !tokenA.equals(tokenB)){
-            const tA = new Token(tokenA.chainId, tokenA.address, tokenA.decimals);
-            const tB = new Token(tokenB.chainId, tokenB.address, tokenB.decimals);
-            return UniPair.getAddress(tA, tB)
-          }
-          return undefined
-        }
+        if (tokenA && tokenB && !tokenA.equals(tokenB)){
+          const TokenClass = getNetworkTokenClass();
+          const tA = new TokenClass(tokenA.chainId, tokenA.address, tokenA.decimals);
+          const tB = new TokenClass(tokenB.chainId, tokenB.address, tokenB.decimals);
 
-        if (localStorage.getItem("networkId") === "polygon"){
-          if (tokenA && tokenB && !tokenA.equals(tokenB)){
-            const tA = new Token(tokenA.chainId, tokenA.address, tokenA.decimals);
-            const tB = new Token(tokenB.chainId, tokenB.address, tokenB.decimals);
-            return PolygonPair.getAddress(tA, tB)
+          if (chainId === ChainId.AVALANCHE){
+              return getNetworkPairClass().getAddress(tA, tB, chainId);
           }
-          return undefined
+          return getNetworkPairClass().getAddress(tA, tB);
         }
-        return tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(tokenA, tokenB) : undefined
+        return undefined
       }),
-    [tokens]
+    [tokens, chainId]
   )
 
   const results = useMultipleContractSingleData(pairAddresses, PAIR_INTERFACE, 'getReserves')

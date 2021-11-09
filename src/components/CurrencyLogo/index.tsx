@@ -5,6 +5,7 @@ import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
 import CoinLogo from '../pancake/CoinLogo'
+import {getCurrencyLogo, isBaseCurrency} from "../../connectors/utils";
 
 const getTokenLogoURL = (address: string) =>
   `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/${address}/logo.png`
@@ -45,16 +46,8 @@ export default function CurrencyLogo({
     return []
   }, [currency, uriLocations])
 
-  if (currency === ETHER) {
-    return <StyledBnbLogo src="/images/coins/bnb.png" size={size} style={style} />
-  }
-
-  if (currency === ETHER_UNI) {
-    return <StyledBnbLogo src="/images/coins/eth.png" size={size} style={style} />
-  }
-
-  if (currency === MATIC) {
-    return <StyledBnbLogo src="/images/coins/matic.png" size={size} style={style} />
+  if (isBaseCurrency(currency)) {
+    return <StyledBnbLogo src={getCurrencyLogo(currency)} size={size} style={style} />
   }
 
   return (currency as any)?.symbol ? (

@@ -5,6 +5,7 @@ import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
 import { useWETHContract } from './useContract'
+import {getNetworkWrappedCurrency, isBaseCurrency} from "../connectors/utils";
 
 export enum WrapType {
   NOT_APPLICABLE,
@@ -36,7 +37,7 @@ export default function useWrapCallback(
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
-    if (inputCurrency === ETHER && currencyEquals(WETH[chainId], outputCurrency)) {
+    if (isBaseCurrency(inputCurrency) && currencyEquals(getNetworkWrappedCurrency(chainId), outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
         execute:
@@ -52,7 +53,7 @@ export default function useWrapCallback(
             : undefined,
         inputError: sufficientBalance ? undefined : 'Insufficient BNB balance'
       }
-    } if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHER) {
+    } if (currencyEquals(getNetworkWrappedCurrency(chainId), inputCurrency) && isBaseCurrency(outputCurrency)) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:

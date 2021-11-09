@@ -7,6 +7,7 @@ import { PairState, usePairs } from '../data/Reserves'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
 import { useActiveWeb3React } from './index'
+import {getTradeCurrencyFromBase} from "../connectors/utils";
 
 function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
   const { chainId } = useActiveWeb3React()
@@ -85,6 +86,7 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
  * Returns the best trade for the exact amount of tokens in to the given token out
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
+  currencyOut = getTradeCurrencyFromBase(currencyOut);
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
 
   return useMemo(() => {

@@ -21,7 +21,6 @@ import { RowBetween, RowFixed } from '../../components/Row'
 
 import Slider from '../../components/Slider'
 import CurrencyLogo from '../../components/CurrencyLogo'
-import { ROUTER_ADDRESS } from '../../constants'
 import { useActiveWeb3React } from '../../hooks'
 import { useCurrency } from '../../hooks/Tokens'
 import { usePairContract } from '../../hooks/useContract'
@@ -40,6 +39,7 @@ import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../s
 
 import { Field } from '../../state/burn/actions'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
+import {getNetworkRouterAddress, getNetworkWrappedCurrency} from "../../connectors/utils";
 
 const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -106,7 +106,7 @@ export default function RemoveLiquidity({
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS)
+  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], getNetworkRouterAddress())
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library) throw new Error('missing dependencies')
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
@@ -137,7 +137,7 @@ export default function RemoveLiquidity({
     ]
     const message = {
       owner: account,
-      spender: ROUTER_ADDRESS,
+      spender: getNetworkRouterAddress(),
       value: liquidityAmount.raw.toString(),
       nonce: nonce.toHexString(),
       deadline: deadlineForSignature,
@@ -403,8 +403,8 @@ export default function RemoveLiquidity({
   const oneCurrencyIsETH = currencyA === ETHER || currencyB === ETHER
   const oneCurrencyIsWETH = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
-        (currencyB && currencyEquals(WETH[chainId], currencyB)))
+      ((currencyA && currencyEquals(getNetworkWrappedCurrency(chainId), currencyA)) ||
+        (currencyB && currencyEquals(getNetworkWrappedCurrency(chainId), currencyB)))
   )
 
   const handleSelectCurrencyA = useCallback(
@@ -550,8 +550,8 @@ export default function RemoveLiquidity({
                         <RowBetween style={{ justifyContent: 'flex-end' }}>
                           {oneCurrencyIsETH ? (
                             <StyledInternalLink
-                              to={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${
-                                currencyB === ETHER ? WETH[chainId].address : currencyIdB
+                              to={`/remove/${currencyA === ETHER ? getNetworkWrappedCurrency(chainId).address : currencyIdA}/${
+                                currencyB === ETHER ? getNetworkWrappedCurrency(chainId).address : currencyIdB
                               }`}
                             >
                               {TranslateString(1188, 'Receive WBNB')}
@@ -559,8 +559,8 @@ export default function RemoveLiquidity({
                           ) : oneCurrencyIsWETH ? (
                             <StyledInternalLink
                               to={`/remove/${
-                                currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'BNB' : currencyIdA
-                              }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'BNB' : currencyIdB}`}
+                                currencyA && currencyEquals(currencyA, getNetworkWrappedCurrency(chainId)) ? 'BNB' : currencyIdA
+                              }/${currencyB && currencyEquals(currencyB, getNetworkWrappedCurrency(chainId)) ? 'BNB' : currencyIdB}`}
                             >
                               {TranslateString(1190, 'Receive BNB')}
                             </StyledInternalLink>

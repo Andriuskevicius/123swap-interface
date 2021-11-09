@@ -34,7 +34,7 @@ import AppBody from '../AppBody'
 import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { PoolPriceBar } from './PoolPriceBar'
-import { ROUTER_ADDRESS } from '../../constants'
+import {getNetworkRouterAddress, getNetworkWrappedCurrency} from "../../connectors/utils";
 
 export default function AddLiquidity({
   match: {
@@ -49,8 +49,8 @@ export default function AddLiquidity({
 
   const oneCurrencyIsWBNB = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId])))
+      ((currencyA && currencyEquals(currencyA, getNetworkWrappedCurrency(chainId))) ||
+        (currencyB && currencyEquals(currencyB, getNetworkWrappedCurrency(chainId))))
   )
   const expertMode = useIsExpertMode()
 
@@ -110,8 +110,8 @@ export default function AddLiquidity({
   )
 
   // check whether the user has approved the router on the tokens
-  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS)
-  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS)
+  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], getNetworkRouterAddress())
+  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], getNetworkRouterAddress())
 
   const addTransaction = useTransactionAdder()
 

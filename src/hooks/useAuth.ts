@@ -12,13 +12,18 @@ import {
 import { connectorLocalStorageKey, ConnectorNames } from '@123swap/uikit'
 import useToast from 'hooks/useToast'
 import { connectorsByName } from 'connectors'
+import {getCurrencyInjectedConnector} from "../connectors/utils";
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback((connectorID: ConnectorNames) => {
-    const connector = connectorsByName[connectorID]
+    let connector = connectorsByName[connectorID]
+    if (connectorID === ConnectorNames.Injected){
+      connector = getCurrencyInjectedConnector()
+    }
+
     if (connector) {
       activate(connector, async (error: Error) => {
         window.localStorage.removeItem(connectorLocalStorageKey)

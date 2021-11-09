@@ -16,6 +16,7 @@ import { SwapState } from './reducer'
 
 import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
+import {isBaseCurrency} from "../../connectors/utils";
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -33,7 +34,7 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : (currency === ETHER_UNI || currency === ETHER || currency === MATIC) ? 'BNB' : '',
+          currencyId: currency instanceof Token ? currency.address : isBaseCurrency(currency) ? 'BNB' : '',
         })
       )
     },

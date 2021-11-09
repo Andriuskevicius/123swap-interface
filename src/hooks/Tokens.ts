@@ -6,6 +6,8 @@ import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
 // eslint-disable-next-line import/no-cycle
 import { useUserAddedTokens } from '../state/user/hooks'
 import { isAddress } from '../utils'
+import { networks } from '../connectors/config'
+import { getCurrency } from '../connectors/utils'
 
 import { useActiveWeb3React } from './index'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
@@ -103,12 +105,8 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const isBNB = currencyId?.toUpperCase() === 'BNB' || currencyId?.toUpperCase() === 'ETH'
+  const isBNB = currencyId !== undefined ? networks.has(currencyId.toUpperCase()) : false
   const token = useToken(isBNB ? undefined : currencyId)
-  let ether  = localStorage.getItem("networkId") === "eth" ? ETHER_UNI : ETHER
-    if (localStorage.getItem("networkId") === "polygon"){
-      ether = MATIC
-    }
-
-  return isBNB ? ether : token
+  return isBNB ? getCurrency() : token
 }
+

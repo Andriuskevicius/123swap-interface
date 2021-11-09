@@ -16,6 +16,7 @@ import { MouseoverTooltip } from '../Tooltip'
 import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
+import {getCurrency} from "../../connectors/utils";
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -169,13 +170,7 @@ export default function CurrencyList({
   fixedListRef?: MutableRefObject<FixedSizeList | undefined>
   showETH: boolean
 }) {
-  let ether: Currency = ETHER;
-  if (localStorage.getItem("networkId") === "eth") {
-      ether = ETHER_UNI
-  }
-  if (localStorage.getItem("networkId") === "polygon") {
-      ether = MATIC
-  }
+  const ether: Currency = getCurrency();
 
   const itemData = useMemo(() => (showETH ? [ether, ...currencies] : [...currencies]), [currencies, showETH, ether])
 

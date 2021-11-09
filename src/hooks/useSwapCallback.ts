@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@123swap/swap-sdk'
+import {ETHER, JSBI, Percent, SwapParameters, Trade, TradeType} from '@123swap/swap-sdk'
 import { useMemo } from 'react'
 import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
@@ -8,6 +8,7 @@ import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from
 import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
+import {getNetworkRouterClass, overwriteBaseCurrency} from "../connectors/utils";
 
  enum SwapCallbackState {
   INVALID,
@@ -60,6 +61,8 @@ function useSwapCallArguments(
 
     const swapMethods = []
 
+    const Router = getNetworkRouterClass();
+
     swapMethods.push(
       // @ts-ignore
       Router.swapCallParameters(trade, {
@@ -95,6 +98,16 @@ export function useSwapCallback(
   recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
   const { account, chainId, library } = useActiveWeb3React()
+
+    // is needed for @pangolindex/sdk to receive its custom ether
+    // class so it can succesfulyy recognize it as its own ether
+  if (trade?.inputAmount.currency === ETHER){
+      trade.inputAmount.currency = overwriteBaseCurrency(trade.inputAmount.currency);
+  }
+
+  if (trade?.outputAmount.currency === ETHER){
+      trade.outputAmount.currency = overwriteBaseCurrency(trade.outputAmount.currency);
+  }
 
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, deadline, recipientAddressOrName)
 

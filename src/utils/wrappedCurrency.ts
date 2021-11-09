@@ -1,8 +1,9 @@
 import { ChainId, Currency, CurrencyAmount, ETHER, Token, TokenAmount, WETH } from '@123swap/swap-sdk'
+import {getNetworkWrappedCurrency} from "../connectors/utils";
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   // eslint-disable-next-line no-nested-ternary
-  return chainId && currency === ETHER ? WETH[chainId] : currency instanceof Token ? currency : undefined
+  return chainId && currency === ETHER ? getNetworkWrappedCurrency(chainId) : currency instanceof Token ? currency : undefined
 }
 
 export function wrappedCurrencyAmount(
