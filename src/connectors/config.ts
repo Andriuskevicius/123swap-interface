@@ -3,28 +3,19 @@ import { Token as UniToken } from '@uniswap/sdk-core';
 import { Pair as PartyPair, Token as PartyToken} from '@partyswap-libs/sdk'
 import { Pair as PangolinPair, Token as PangolinToken, Router as PangolionRouter, CAVAX as PangolinCAVAX, WAVAX} from '@pangolindex/sdk'
 import { Pair as PolygonPair} from 'quickswap-sdk'
+import { Pair as SpookyPair} from '@ac32/spookyswap-sdk'
 import {TokenAmount, Pair, Currency, Token, Router} from '@123swap/swap-sdk'
 import {InjectedConnector} from "@web3-react/injected-connector";
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { abi as IPangolinRouterABI } from '@pangolindex/exchange-contracts/artifacts/contracts/pangolin-periphery/PangolinRouter.sol/PangolinRouter.json'
 import {ALL_SUPPORTED_CHAIN_IDS} from "../constants/chains";
 
+
 export const ETHER: Currency = new Currency(18, 'BNB', 'BNB');
 export const ETHER_UNI: Currency = new Currency(18, 'ETH', 'ETH');
 export const MATIC: Currency = new Currency(18, 'MATIC', 'MATIC');
+export const FTM: Currency = new Currency(18, 'FTM', 'FTM');
 export const CAVAX = PangolinCAVAX;
-
-// IPangolinRouter
-export enum NewChainId {
-    ETHMAINNET = 1,
-    ROPSTEN = 3,
-    RINKEBY = 4,
-    MAINNET = 56,
-    BSCTESTNET = 97,
-    POLYON_MAINET = 137,
-    POLYON_TESTNET = 80001,
-    AVALANCHE = 43114
-}
 
 export type NetworkConfig = {
     title: string;
@@ -107,8 +98,25 @@ const avax: NetworkConfig = {
     routerABI: IPangolinRouterABI
 };
 
+const ftm: NetworkConfig = {
+    title: "FTM",
+    chainId: 250,
+    pair: SpookyPair,
+    icon: "/images/coins/ftm.png",
+    currency: FTM,
+    injected:  new InjectedConnector({supportedChainIds: [250, 4002]}),
+    multicall: '0xb828c456600857abd4ed6c32facc607bd0464f4f',
+    wrappedCurrency: new Token(250, '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83', 18, 'WFTM', 'Wrapped FTM'),
+    router: "0xf491e7b69e4244ad4002bc14e878a34207e38c29",
+    scanUrl: 'ftmscan.com',
+    tokenClass: UniToken,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
 export const networks: Map<string, NetworkConfig> = new Map([
     ["BNB", bnb],
     ["ETH", eth] ,
     ["MATIC", matic],
-    ["AVAX", avax]]);
+    ["AVAX", avax],
+    ["FTM", ftm]]);

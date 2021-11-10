@@ -51,7 +51,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient BNB balance'
+        inputError: sufficientBalance ? undefined : 'Insufficient balance'
       }
     } if (currencyEquals(getNetworkWrappedCurrency(chainId), inputCurrency) && isBaseCurrency(outputCurrency)) {
       return {

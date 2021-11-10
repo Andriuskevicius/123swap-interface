@@ -1,6 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@123swap/swap-sdk'
-import {NewChainId} from "../connectors/config"
-import {getNetworkWrappedCurrency} from "../connectors/utils"
+import {WETH_ONLY} from "../connectors/chains"
 
 export const ROUTER_ADDRESS = '0x829AdDC0B20AA383533488fBf00f5bE2D8326793'
 export const ROUTER_UNI_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
@@ -32,17 +31,6 @@ export const ETH = new Token(
   'ETH',
   'Binance-Peg Ethereum Token'
 )
-
-const WETH_ONLY: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
-  [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
-  [ChainId.ETHMAINNET]: [WETH[ChainId.ETHMAINNET]],
-  [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
-  [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-  [ChainId.POLYON_MAINET]: [WETH[ChainId.POLYON_MAINET]],
-  [ChainId.POLYON_TESTNET]: [WETH[ChainId.POLYON_TESTNET]],
-  [ChainId.AVALANCHE]: [WETH[ChainId.AVALANCHE]],
-}
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {

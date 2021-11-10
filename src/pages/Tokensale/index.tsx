@@ -178,7 +178,9 @@ export default function Tokensale() {
                         "0xaD6D458402F60fD3Bd25163575031ACDce07538D",
                         "0x19860CCB0A68fd4213aB9D8266F7bBf05A8dDe98",
                         "0xc7198437980c041c805A1EDcbA50c1Ce5db95118",
-                        "0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664",]}
+                        "0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664",
+                        "0x049d68029688eAbF473097a2fC38ef61633A3C7A",
+                        "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75"]}
                     id="swap-currency-input"
                   />
                 {!account ? (

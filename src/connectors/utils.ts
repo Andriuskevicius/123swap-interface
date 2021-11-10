@@ -1,8 +1,8 @@
 import {Currency, ETHER, Token} from "@123swap/swap-sdk";
 import {InjectedConnector} from "@web3-react/injected-connector";
 import {CAVAX} from "@pangolindex/sdk";
-import {NetworkConfig, networks} from "./config";
 import {injected} from "./index";
+import {NetworkConfig, networks} from "./config";
 
 
 function getNetworkAttributeOrDefault(key: string, attribute: string, defaultReturn:any){
