@@ -4,7 +4,7 @@ import {ETHER, JSBI, Percent, SwapParameters, Trade, TradeType} from '@123swap/s
 import { useMemo } from 'react'
 import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
-import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils'
+import {calculateGasMargin, getRouterContract, isAddress, renderCurSymbol, shortenAddress} from '../utils'
 import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
@@ -201,7 +201,7 @@ export function useSwapCallback(
             const inputAmount = trade.inputAmount.toSignificant(3)
             const outputAmount = trade.outputAmount.toSignificant(3)
 
-            const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
+            const base = `Swap ${inputAmount} ${renderCurSymbol(inputSymbol)} for ${outputAmount} ${renderCurSymbol(outputSymbol)}`
             const withRecipient =
               recipient === account
                 ? base

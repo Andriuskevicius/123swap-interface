@@ -49,8 +49,8 @@ export default function AddLiquidity({
 
   const oneCurrencyIsWBNB = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, getNetworkWrappedCurrency(chainId))) ||
-        (currencyB && currencyEquals(currencyB, getNetworkWrappedCurrency(chainId))))
+      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
+        (currencyB && currencyEquals(currencyB, WETH[chainId])))
   )
   const expertMode = useIsExpertMode()
 

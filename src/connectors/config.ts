@@ -1,10 +1,11 @@
 import { Pair as UniPair} from '@uniswap/v2-sdk'
 import { Token as UniToken } from '@uniswap/sdk-core';
+import { Pair as SushiPair, Token as SushiToken, Router as SushiRouter} from '@sushiswap/sdk'
 import { Pair as PartyPair, Token as PartyToken} from '@partyswap-libs/sdk'
 import { Pair as PangolinPair, Token as PangolinToken, Router as PangolionRouter, CAVAX as PangolinCAVAX, WAVAX} from '@pangolindex/sdk'
 import { Pair as PolygonPair} from 'quickswap-sdk'
 import { Pair as SpookyPair} from '@ac32/spookyswap-sdk'
-import {TokenAmount, Pair, Currency, Token, Router} from '@123swap/swap-sdk'
+import {TokenAmount, Pair, Currency, Token, Router, ChainId} from '@123swap/swap-sdk'
 import {InjectedConnector} from "@web3-react/injected-connector";
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { abi as IPangolinRouterABI } from '@pangolindex/exchange-contracts/artifacts/contracts/pangolin-periphery/PangolinRouter.sol/PangolinRouter.json'
@@ -15,6 +16,8 @@ export const ETHER: Currency = new Currency(18, 'BNB', 'BNB');
 export const ETHER_UNI: Currency = new Currency(18, 'ETH', 'ETH');
 export const MATIC: Currency = new Currency(18, 'MATIC', 'MATIC');
 export const FTM: Currency = new Currency(18, 'FTM', 'FTM');
+export const ONE: Currency = new Currency(18, 'ONE', 'ONE');
+export const MOVR: Currency = new Currency(18, 'MOVR', 'MOVR');
 export const CAVAX = PangolinCAVAX;
 
 export type NetworkConfig = {
@@ -114,9 +117,42 @@ const ftm: NetworkConfig = {
     routerABI: IUniswapV2Router02ABI
 };
 
+const one: NetworkConfig = {
+    title: "ONE",
+    chainId: 1666600000,
+    pair: SushiPair,
+    icon: "/images/coins/one.png",
+    currency: ONE,
+    injected:  new InjectedConnector({supportedChainIds: [1666600000, 1666600001]}),
+    multicall: '0x34b415f4d3b332515e66f70595ace1dcf36254c5',
+    wrappedCurrency: new Token(1666600000, '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a', 18, 'WONE', 'Wrapped ONE'),
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'explorer.harmony.one',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
+const movr: NetworkConfig = {
+    title: "MOVR",
+    chainId: 1285,
+    pair: SushiPair,
+    icon: "/images/coins/movr.png",
+    currency: MOVR,
+    injected:  new InjectedConnector({supportedChainIds: [1285]}),
+    multicall: '0xe05349d6fE12602F6084550995B247a5C80C0E2C',
+    wrappedCurrency: new Token(1285, '0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d', 18, 'WMOVR', 'Wrapped MOVR'),
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'moonriver.moonscan.io',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
 export const networks: Map<string, NetworkConfig> = new Map([
     ["BNB", bnb],
     ["ETH", eth] ,
     ["MATIC", matic],
     ["AVAX", avax],
-    ["FTM", ftm]]);
+    ["ONE", one],
+    ["MOVR", movr]]);

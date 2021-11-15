@@ -39,6 +39,8 @@ export const EMPTY_LIST: TokenAddressMap = {
   [ChainId.POLYON_TESTNET]: {},
   [ChainId.AVALANCHE]: {},
   [ChainId.FANTOM]: {},
+  [ChainId.HARMONY]: {},
+  [ChainId.MOONRIVER]: {},
 }
 
 export const WETH_ONLY: ChainTokenList = {
@@ -51,4 +53,6 @@ export const WETH_ONLY: ChainTokenList = {
   [ChainId.POLYON_TESTNET]: [WETH[ChainId.POLYON_TESTNET]],
   [ChainId.AVALANCHE]: [WETH[ChainId.AVALANCHE]],
   [ChainId.FANTOM]: [WETH[ChainId.FANTOM]],
+  [ChainId.HARMONY]: [WETH[ChainId.HARMONY]],
+  [ChainId.MOONRIVER]: [WETH[ChainId.MOONRIVER]],
 }
