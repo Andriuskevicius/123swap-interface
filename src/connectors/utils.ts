@@ -34,7 +34,7 @@ export function overwriteBaseCurrency(currency:any) : any{
     return currency;
 }
 
-export function getTradeCurrencyFromBase(currency: Currency | undefined) : Currency| undefined{
+export function getTradeCurrencyFromBase(currency: Currency) : Currency {
     if (isBaseCurrency(currency)){
         return ETHER
     }

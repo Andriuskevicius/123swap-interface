@@ -86,7 +86,14 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
  * Returns the best trade for the exact amount of tokens in to the given token out
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
-  currencyOut = getTradeCurrencyFromBase(currencyOut);
+  if (currencyOut !== undefined) {
+      currencyOut = getTradeCurrencyFromBase(currencyOut);
+  }
+
+  if (currencyAmountIn !== undefined){
+      currencyAmountIn.currency = getTradeCurrencyFromBase(currencyAmountIn.currency);
+  }
+
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
 
   return useMemo(() => {
