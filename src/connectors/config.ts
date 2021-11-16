@@ -18,6 +18,8 @@ export const MATIC: Currency = new Currency(18, 'MATIC', 'MATIC');
 export const FTM: Currency = new Currency(18, 'FTM', 'FTM');
 export const ONE: Currency = new Currency(18, 'ONE', 'ONE');
 export const MOVR: Currency = new Currency(18, 'MOVR', 'MOVR');
+export const HT: Currency = new Currency(18, 'HT', 'HT');
+export const OKT: Currency = new Currency(18, 'OKT', 'OKT');
 export const CAVAX = PangolinCAVAX;
 
 export type NetworkConfig = {
@@ -149,10 +151,43 @@ const movr: NetworkConfig = {
     routerABI: IUniswapV2Router02ABI
 };
 
+const ht: NetworkConfig = {
+    title: "HT",
+    chainId: 128,
+    pair: SushiPair,
+    icon: "/images/coins/heco.svg",
+    currency: HT,
+    injected:  new InjectedConnector({supportedChainIds: [128]}),
+    multicall: '0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3',
+    wrappedCurrency: new Token(128, '0x5545153CCFcA01fbd7Dd11C0b23ba694D9509A6F', 18, 'WHT', 'Wrapped HT'),
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'hecoinfo.com',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
+const okt: NetworkConfig = {
+    title: "OKT",
+    chainId: 66,
+    pair: SushiPair,
+    icon: "/images/coins/okt.png",
+    currency: OKT,
+    injected:  new InjectedConnector({supportedChainIds: [66]}),
+    multicall: '0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3',
+    wrappedCurrency: new Token(66, '0x8F8526dbfd6E38E3D8307702cA8469Bae6C56C15', 18, 'WOKT', 'Wrapped OKExChain'),
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'oklink.com/oec',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
 export const networks: Map<string, NetworkConfig> = new Map([
     ["BNB", bnb],
     ["ETH", eth] ,
     ["MATIC", matic],
     ["AVAX", avax],
     ["ONE", one],
-    ["MOVR", movr]]);
+    ["MOVR", movr],
+    ["HT", ht],
+    ["OKT", okt]]);

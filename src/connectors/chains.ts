@@ -41,6 +41,8 @@ export const EMPTY_LIST: TokenAddressMap = {
   [ChainId.FANTOM]: {},
   [ChainId.HARMONY]: {},
   [ChainId.MOONRIVER]: {},
+  [ChainId.HECO]: {},
+  [ChainId.OKEX]: {},
 }
 
 export const WETH_ONLY: ChainTokenList = {
@@ -55,4 +57,6 @@ export const WETH_ONLY: ChainTokenList = {
   [ChainId.FANTOM]: [WETH[ChainId.FANTOM]],
   [ChainId.HARMONY]: [WETH[ChainId.HARMONY]],
   [ChainId.MOONRIVER]: [WETH[ChainId.MOONRIVER]],
+  [ChainId.HECO]: [WETH[ChainId.HECO]],
+  [ChainId.OKEX]: [WETH[ChainId.OKEX]],
 }

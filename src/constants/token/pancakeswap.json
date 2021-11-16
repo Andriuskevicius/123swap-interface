@@ -4030,7 +4030,7 @@
     },
     {
       "name": "Wrapped MOVR",
-      "address": "0x98878B06940aE243284CA214f92Bb71a2b032B8A",
+      "address": "0xf50225a84382c74CbdeA10b0c176f71fc3DE0C4d",
       "symbol": "WMOVR",
       "decimals": 18,
       "chainId": 1285,
@@ -4179,6 +4179,582 @@
       "decimals": 18,
       "chainId": 1285,
       "logoURI": "https://app.solarbeam.io/images/tokens/frax.png"
-    }
+    },
+      {
+    "name": "Wrapped HT",
+    "address": "0x5545153CCFcA01fbd7Dd11C0b23ba694D9509A6F",
+    "symbol": "WHT",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HT_32.png"
+  },
+  {
+    "name": "Heco-Peg HBCH Token",
+    "address": "0xeF3CEBD77E0C52cb6f60875d9306397B5Caca375",
+    "symbol": "HBCH",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HBCH_32.png"
+  },
+  {
+    "name": "Heco-Peg HLTC Token",
+    "address": "0xecb56cf772B5c9A6907FB7d32387Da2fCbfB63b4",
+    "symbol": "HLTC",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HLTC_32.png"
+  },
+  {
+    "name": "Heco-Peg HPT Token",
+    "address": "0xE499Ef4616993730CEd0f31FA2703B92B50bB536",
+    "symbol": "HPT",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HPT_32.png"
+  },
+  {
+    "name": "Heco-Peg LAMB Token",
+    "address": "0xE131F048D85f0391A24435eEFB7763199B587d0e",
+    "symbol": "LAMB",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg HBSV Token",
+    "address": "0xc2CB6B5357CcCE1B99Cd22232942D9A225Ea4eb1",
+    "symbol": "HBSV",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HBSV_32.png"
+  },
+  {
+    "name": "Heco-Peg LRC Token",
+    "address": "0xbf22F76657601A522Cf9Ac832718A3404302D6bC",
+    "symbol": "LRC",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg BETH Token",
+    "address": "0xB6F4c418514dd4680F76d5caa3bB42dB4A893aCb",
+    "symbol": "BETH",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg YFI Token",
+    "address": "0xB4F019bEAc758AbBEe2F906033AAa2f0F6Dacb35",
+    "symbol": "YFI",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg HFIL Token",
+    "address": "0xae3a768f9aB104c69A7CD6041fE16fFa235d1810",
+    "symbol": "HFIL",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HFIL_32.png"
+  },
+  {
+    "name": "Heco-Peg USDTHECO Token",
+    "address": "0xa71EdC38d189767582C38A3145b5873052c3e47a",
+    "symbol": "USDTHECO",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/USDTHECO_32.png"
+  },
+  {
+    "name": "Heco-Peg HDOT Token",
+    "address": "0xA2c49cEe16a5E5bDEFDe931107dc1fae9f7773E3",
+    "symbol": "HDOT",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HDOT_32.png"
+  },
+  {
+    "name": "Heco-Peg LINK Token",
+    "address": "0x9e004545c59D359F6B7BFB06a26390b087717b42",
+    "symbol": "LINK",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg SKM Token",
+    "address": "0x96674f8da3F9c6ACb4A56b393AF9A490D70D16d0",
+    "symbol": "SKM",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg USDCHECO Token",
+    "address": "0x9362Bbef4B8313A8Aa9f0c9808B80577Aa26B73B",
+    "symbol": "USDCHECO",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg HBC Token",
+    "address": "0x894b2917c783514c9e4c24229bF60f3Cb4c9c905",
+    "symbol": "HBC",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg SNX Token",
+    "address": "0x777850281719d5a96C29812ab72f822E0e09F3Da",
+    "symbol": "SNX",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg HBTC Token",
+    "address": "0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa",
+    "symbol": "HBTC",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HBTC_32.png"
+  },
+  {
+    "name": "Heco-Peg ETH Token",
+    "address": "0x64FF637fB478863B7468bc97D30a5bF3A428a1fD",
+    "symbol": "ETH",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HETH_32.png"
+  },
+  {
+    "name": "Heco-Peg ARPA Token",
+    "address": "0x5A6B72Dd6209A770aE1C02a7A2E1900636072d0b",
+    "symbol": "ARPA",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg CNNS Token",
+    "address": "0x4BF06f76C68D81BDE1F87535fdCb60Adadb01CF5",
+    "symbol": "CNNS",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg HXTZ Token",
+    "address": "0x45e97daD828AD735af1dF0473fc2735F0Fd5330c",
+    "symbol": "HXTZ",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HXZT_32.png"
+  },
+  {
+    "name": "Heco-Peg DAIHECO Token",
+    "address": "0x3D760a45D0887DFD89A2F5385a236B29Cb46ED2a",
+    "symbol": "DAIHECO",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg SWFTC Token",
+    "address": "0x329dda64Cbc4DFD5FA5072b447B3941CE054ebb3",
+    "symbol": "SWFTC",
+    "decimals": 8,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg GOF Token",
+    "address": "0x2AAFe3c9118DB36A20dd4A942b6ff3e78981dce1",
+    "symbol": "GOF",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg UNI Token",
+    "address": "0x22C54cE8321A4015740eE1109D9cBc25815C46E6",
+    "symbol": "UNI",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg AAVE Token",
+    "address": "0x202b4936fE1a82A4965220860aE46d7d3939Bb25",
+    "symbol": "AAVE",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg BAL Token",
+    "address": "0x045De15Ca76e76426E8Fc7cba8392A3138078D0F",
+    "symbol": "BAL",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Heco-Peg HUSD Token",
+    "address": "0x0298c2b32eaE4da002a15f36fdf7615BEa3DA047",
+    "symbol": "HUSD",
+    "decimals": 8,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/HUSD_32.png"
+  },
+  {
+    "name": "MDX Token",
+    "address": "0x25D2e80cB6B86881Fd7e07dd263Fb79f4AbE033c",
+    "symbol": "MDX",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/mdex_32.png"
+  },
+  {
+    "name": "FilDA on Heco",
+    "address": "0xE36FFD17B2661EB57144cEaEf942D95295E637F0",
+    "symbol": "FILDA",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/filda_32.png"
+  },
+  {
+    "name": "LendHub",
+    "address": "0x8F67854497218043E1f72908FFE38D0Ed7F24721",
+    "symbol": "LHB",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "HFI",
+    "address": "0x98fc3b60Ed4A504F588342A53746405E355F9347",
+    "symbol": "HFI",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/hecofi_32.png"
+  },
+  {
+    "name": "SLN-Token V2",
+    "address": "0x4e252342cf35Ff02c4CCA9bc655129f5b4a2f901",
+    "symbol": "SLNV2",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Channels",
+    "address": "0x1e6395E6B059fc97a4ddA925b6c5ebf19E05c69f",
+    "symbol": "CAN",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "EarnDefiCoin",
+    "address": "0x68a0A1fEF18DfCC422Db8bE6F0F486dEa1999EDC",
+    "symbol": "EDC",
+    "decimals": 9,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "LLC",
+    "address": "0x6A4db3965CB6293dBA0F63F14FB36873172E38d3",
+    "symbol": "LLC",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "LLS",
+    "address": "0x5a42eeD7200d23F0D4CF35Ccd582D6d363F16BFc",
+    "symbol": "LLS",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "BAGS",
+    "address": "0x6868D406a125Eb30886A6DD6B651D81677d1F22c",
+    "symbol": "BAGS",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "BAG",
+    "address": "0xa042fb0e60125A4022670014AC121931e7501Af4",
+    "symbol": "BAG",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Lavaswap",
+    "address": "0x56f95662E71f30b333b456439248c6dE589082a4",
+    "symbol": "Lava",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Sovi Token",
+    "address": "0x49e16563a2ba84E560780946f0Fb73A8B32C841E",
+    "symbol": "SOVI",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/token/images/sovifinance_32.png"
+  },
+  {
+    "name": "Decentralized Mining Coin",
+    "address": "0x854Bb58fDDa85F20b5aB20B20d888f0554c02560",
+    "symbol": "DMC",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "BEE",
+    "address": "0xB1F80844a1B84c61ab80CafD88B1f8c09f9342e1",
+    "symbol": "BEE",
+    "decimals": 8,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "CircleSwap Governance Token",
+    "address": "0xbe5DF2fac88BB096A973e664171E60586bC5940c",
+    "symbol": "CIR",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+  {
+    "name": "Hash Bridge Oracle",
+    "address": "0x8764Bd4fcc027faF72bA83c0b2028a3BAE0D2D57",
+    "symbol": "HBO",
+    "decimals": 18,
+    "chainId": 128,
+    "logoURI": "https://hecoinfo.com/images/main/empty-token.png"
+  },
+     {
+    "name": "Wrapped OKExChain",
+    "address": "0x8F8526dbfd6E38E3D8307702cA8469Bae6C56C15",
+    "symbol": "WOKT",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://assets.coingecko.com/coins/images/13708/small/OKExChain.jpg?1611051839"
+  },
+  {
+    "name": "BTCK",
+    "address": "0x54e4622DC504176b3BB432dCCAf504569699a7fF",
+    "symbol": "BTCK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_btck.png"
+  },
+  {
+    "name": "LTCK",
+    "address": "0xfA520efC34C81bfC1E3DD48b7fE9fF326049f986",
+    "symbol": "LTCK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_ltck.png"
+  },
+  {
+    "name": "ETHK",
+    "address": "0xEF71CA2EE68F45B9Ad6F72fbdb33d707b872315C",
+    "symbol": "ETHK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_ethk.png"
+  },
+  {
+    "name": "FILK",
+    "address": "0x3F8969Be2FC0770dCc174968e4B4ff146E0ACDaF",
+    "symbol": "FILK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_filk.png"
+  },
+  {
+    "name": "DOTK",
+    "address": "0xabc732f6f69a519F6d508434481376B6221eb7d5",
+    "symbol": "DOTK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_dotk.png"
+  },
+  {
+    "name": "OKB",
+    "address": "0xdF54B6c6195EA4d948D03bfD818D365cf175cFC2",
+    "symbol": "OKB",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_okb.png"
+  },
+  {
+    "name": "USDC",
+    "address": "0xc946DAf81b08146B1C7A8Da2A851Ddf2B3EAaf85",
+    "symbol": "USDC",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_usdc.png"
+  },
+  {
+    "name": "USDK",
+    "address": "0xdCAC52E001f5bd413aa6ea83956438F29098166b",
+    "symbol": "USDK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_usdk.png"
+  },
+  {
+    "name": "USDT",
+    "address": "0x382bB369d343125BfB2117af9c149795C6C65C50",
+    "symbol": "USDT",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_usdt.png"
+  },
+  {
+    "name": "LINKK",
+    "address": "0x9B99c3Ce751aA292320033f93a1376902d4bA58b",
+    "symbol": "LINKK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x514910771AF9Ca656af840dff83E8264EcF986CA/logo.png"
+  },
+  {
+    "name": "SUSHIK",
+    "address": "0x2218E0D5E0173769F5b4939a3aE423f7e5E4EAB7",
+    "symbol": "SUSHIK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_sushik.png"
+  },
+  {
+    "name": "UNIK",
+    "address": "0x59D226BB0a4d74274D4354EBb6a0E1A1Aa5175B6",
+    "symbol": "UNIK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_unik.png"
+  },
+  {
+    "name": "ZKSK",
+    "address": "0xCD08D321f6Bc10a10f094e4b2E6C9b8bF9906401",
+    "symbol": "ZKSK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_zksk.png"
+  },
+  {
+    "name": "AUCTIONK",
+    "address": "0x77Df6ebec3316792D4ea5bc0f8286c27905Aa8e8",
+    "symbol": "AUCTIONK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_auctionk.png"
+  },
+  {
+    "name": "SFGK",
+    "address": "0x3212606F74Cc59656E1EC6f587FCA61bA3B85eb0",
+    "symbol": "SFGK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_sfgk.png"
+  },
+  {
+    "name": "DAIK",
+    "address": "0x21cDE7E32a6CAF4742d00d44B07279e7596d26B9",
+    "symbol": "DAIK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_daik.png"
+  },
+  {
+    "name": "KINEK",
+    "address": "0xc05760d75E7F5Ad428a906674Ce7c7c82d003d01",
+    "symbol": "KINEK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.bafang.com/cdn/explorer/okexchain/exchain_kinek.png"
+  },
+  {
+    "name": "FLUXK",
+    "address": "0xd0C6821aba4FCC65e8f1542589e64BAe9dE11228",
+    "symbol": "FLUXK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://assets.coingecko.com/coins/images/15002/small/logo.dabc411c.png?1619402947"
+  },
+  {
+    "name": "Wing Token",
+    "address": "0x7A47ab305b8a2A3F4020d13FA9EF73cDdCc0e7D4",
+    "symbol": "WING",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://assets.coingecko.com/coins/images/12477/small/s_wing_icon.png?1610631390"
+  },
+  {
+    "name": "Nuls",
+    "address": "0x8CD6e29d3686d24d3C2018CEe54621eA0f89313B",
+    "symbol": "NULS",
+    "decimals": 8,
+    "chainId": 66,
+    "logoURI": "https://assets.coingecko.com/coins/images/1053/small/Nuls.png?1556868153"
+  },
+  {
+    "name": "NerveNetwork",
+    "address": "0xd1351Ec15E8511658C2Ba1e1e81e1E60aA39c9Cd",
+    "symbol": "NVT",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://assets.coingecko.com/coins/images/11873/small/NerveNetwork.png?1595541544"
+  },
+  {
+    "name": "SHIBK",
+    "address": "0xaa27bADaa3C9ec9081b8f6C9cDd2bf375F143780",
+    "symbol": "SHIBK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.coinall.ltd/cdn/explorer/okexchain/exchain_shibk.png"
+  },
+  {
+    "name": "ETCK",
+    "address": "0x99970778E2715bBc9Cf8fb83D10dCBC2D2D551A3",
+    "symbol": "ETCK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.coinall.ltd/cdn/explorer/okexchain/exchain_etck.png"
+  },
+  {
+    "name": "WBTCK",
+    "address": "0x506f731F7656e2FB34b587B912808f2a7aB640BD",
+    "symbol": "WBTCK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.coinall.ltd/cdn/explorer/okexchain/exchain_wbtck.png"
+  },
+  {
+    "name": "BCHK",
+    "address": "0x18D103b7066AEedb6005B78A462Ef9027329b1EA",
+    "symbol": "BCHK",
+    "decimals": 18,
+    "chainId": 66,
+    "logoURI": "https://static.coinall.ltd/cdn/explorer/okexchain/exchain_bchk.png"
+  }
   ]
 }
