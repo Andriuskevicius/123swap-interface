@@ -10,12 +10,15 @@ import {calculateGasMargin, getSigner} from '../utils'
 import { useTokenContract } from './useContract'
 import { useActiveWeb3React } from './index'
 import {WrappedTokenInfo} from "../state/lists/hooks";
+import {isBaseSymbol} from "../connectors/utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? "";
 
 export default function useTransferCallback(
   receiver: string,
-  currencyAmount?: CurrencyAmount
+  successCallback: any,
+  currencyAmount?: CurrencyAmount,
+  projectId?: number
 ): [() => Promise<void>] {
   const { library, account, chainId } = useActiveWeb3React()
   let tokenAddress = currencyAmount?.currency?.symbol ?? "BNB";
@@ -30,19 +33,26 @@ export default function useTransferCallback(
   }
 
   const sendOrder = useCallback(async (transaction): Promise<void> => {
+    let url = `${BACKEND_URL}/presale/order/`;
     const data = {"amount": formatEther(amount),
                   "address": account,
                   "currency": currencyAmount?.currency?.symbol,
                   "currency_address": tokenAddress,
                   "referrer_code":localStorage.getItem("referrer"),
                   "chain_id": chainId,
+                  "project" : projectId,
                   transaction};
-      axios.post(`${BACKEND_URL}/presale/order/`, data).then((response) => {
-            history.push("history");
+
+    if (projectId !== undefined){
+      url = `${BACKEND_URL}/launchpad/order/`;
+    }
+
+      axios.post(url, data).then((response) => {
+          successCallback();
         }).catch((error) => {
           console.log("Error", error);
         })
-      }, [amount, account, tokenAddress, chainId, history, currencyAmount]);
+      }, [amount, account, tokenAddress, chainId, currencyAmount, projectId, successCallback]);
 
 
   const approve = useCallback(async (): Promise<void> => {
@@ -51,7 +61,7 @@ export default function useTransferCallback(
       return
     }
 
-    if (tokenAddress === "BNB" || tokenAddress === "ETH" ){
+    if (isBaseSymbol(tokenAddress)){
       if (library !== undefined && account !== undefined && account !== null){
           const signer =  getSigner(library, account);
 

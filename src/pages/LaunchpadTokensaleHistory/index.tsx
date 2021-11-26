@@ -3,16 +3,18 @@ import styled, { ThemeContext } from 'styled-components'
 import axios from "axios";
 import { Heading, Text, Flex, CardBody, LinkExternal } from '@123swap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import TokensaleCardNav from 'components/TokensaleCardNav'
 import { StyledInternalLink } from 'components/Shared'
 import { LightCard } from 'components/Card'
 import { RowBetween } from 'components/Row'
 import { AutoColumn } from 'components/Column'
 import { getBscScanLink } from 'utils'
+import {RouteComponentProps} from "react-router-dom";
 import { useActiveWeb3React } from 'hooks'
 import useI18n from 'hooks/useI18n'
+import LaunchpadTokensaleNav from "../../components/LaunchpadTokensaleCardNav/index";
 import AppBody from '../AppBody'
 import { MouseoverTooltip } from '../../components/Tooltip'
+import {getLaunchpadConfigById} from "../Launchpad/config";
 
 const StyledPageHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -23,7 +25,6 @@ const Details = styled.div`
   flex: 1;
 `
 
-const PRESALE_RECEIVER_ADDRESS = process.env.REACT_APP_PRESALE_RECEIVER_ADDRESS ?? ""
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? ""
 
 
@@ -37,7 +38,7 @@ export interface Order {
 }
 
 
-export default function TokensaleHistory() {
+export default function TokensaleHistory(props: RouteComponentProps<{ projectId: string }>) {
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
   const TranslateString = useI18n()
@@ -46,8 +47,12 @@ export default function TokensaleHistory() {
     const [tokenAmount, setTokenAmount] = useState(0);
     const [prices, setPrices] = useState([]);
 
+  const {match: {params: { projectId }}} = props;
+
+    const launchpadConfig = getLaunchpadConfigById(parseInt(projectId))
+
     useEffect(() => {
-      axios.get(`${BACKEND_URL}/presale/order/?address=${account}`).then((response) => {
+         axios.get(`${BACKEND_URL}/launchpad/${projectId}/?address=${account}`).then((response) => {
           setOrders(response.data);
           const allOrders = response.data as Array<any>;
           if (allOrders.length){
@@ -59,7 +64,7 @@ export default function TokensaleHistory() {
       }).catch((error) => {
         console.log("Error", error);
       })
-    }, [account, setOrders]);
+    }, [account, setOrders, projectId]);
 
     const orderList = orders.map((value, key) => {
         const date = new Date(parseFloat(value?.date_created) * 1000)
@@ -79,16 +84,16 @@ export default function TokensaleHistory() {
   return (
     <>
 
-      <TokensaleCardNav activeIndex={1} />
+      <LaunchpadTokensaleNav activeIndex={1} projectId={parseInt(projectId)}/>
 
       <AppBody>
 
         <StyledPageHeader>
       <Flex alignItems="center">
         <Details>
-          <Heading mb="8px">Tokensale history</Heading>
+          <Heading mb="8px">{launchpadConfig?.name} history</Heading>
             <Text color="textSubtle" fontSize="14px">
-              Review your token purchases
+              Review your {launchpadConfig?.name} token purchases
             </Text>
         </Details>
       </Flex>
@@ -116,7 +121,7 @@ export default function TokensaleHistory() {
             )}
 
         <RowBetween align="center">
-            <Text fontSize="16px">{TranslateString(88, 'Total token amount')}</Text>
+            <Text fontSize="16px">{TranslateString(88, `Total ${launchpadConfig?.name} token amount`)}</Text>
             <Text fontSize="16px" style={{fontWeight:600}}>{tokenAmount}</Text>
           </RowBetween>
         </AutoColumn>

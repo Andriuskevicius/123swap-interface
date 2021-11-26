@@ -17,6 +17,10 @@ export function isBaseCurrency(currency: Currency | undefined) : boolean{
     return networks.has(currency?.symbol ?? "")
 }
 
+export function isBaseSymbol(currency: string) : boolean{
+    return networks.has(currency)
+}
+
 export function getBaseCurrencyFromChainId(chainId: number) : string{
     let networkId = "";
     networks.forEach((network: NetworkConfig, key: string) => {

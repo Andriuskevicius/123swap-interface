@@ -52,7 +52,6 @@ const eth: NetworkConfig = {
     tokenClass: Token,
     routerClass: Router,
     routerABI: IUniswapV2Router02ABI
-
 };
 
 const bnb: NetworkConfig = {

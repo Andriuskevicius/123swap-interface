@@ -12,17 +12,21 @@ import { StyledInternalLink } from 'components/Shared'
 import { LightCard } from 'components/Card'
 import { RowBetween } from 'components/Row'
 import { AutoColumn } from 'components/Column'
-import {useHistory} from "react-router";
 
 import { useActiveWeb3React } from 'hooks'
 import { usePairs } from 'data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
 import useI18n from 'hooks/useI18n'
+import {RouteComponentProps, Redirect, useHistory} from "react-router";
 import AppBody from '../AppBody'
 import CurrencyInputPanel from "../../components/CurrencyInputPanel/index";
 import {tryParseAmount, useDerivedSwapInfo, useSwapState} from "../../state/swap/hooks";
 import {calculateTokenAmount, calculateMinimumAmountValue} from "../../utils/prices";
+import {getLaunchpadConfigById} from "../Launchpad/config";
 import { useCurrencyBalance } from '../../state/wallet/hooks';
+import LaunchpadTokensaleNav from "../../components/LaunchpadTokensaleCardNav/index";
+
+
 
 const StyledPageHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -33,21 +37,29 @@ const Details = styled.div`
   flex: 1;
 `
 
-const PRESALE_RECEIVER_ADDRESS = process.env.REACT_APP_PRESALE_RECEIVER_ADDRESS ?? ""
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? ""
 
-export default function Tokensale() {
+export default function LaunchpadTokensale(props: RouteComponentProps<{ projectId: string }>) {
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
   const TranslateString = useI18n()
-    const history = useHistory()
+    const history= useHistory();
+
+  const {
+    match: {
+      params: { projectId },
+    },
+  } = props
+
+    const launchpadConfig = getLaunchpadConfigById(parseInt(projectId))
     const [amount, setAmount] = useState("0");
     const [tokenAmount, setTokenAmount] = useState(0);
     const [prices, setPrices] = useState([]);
-    const [minimumAmount, setMinimumAmount] = useState(133333);
-    const [minimumAmountValue, setMinimumAmountValue] = useState("0");
-    const [maximumAmount, setMaximumAmount] = useState(18000000);
+    const [minimumAmount, setMinimumAmount] = useState(launchpadConfig?.minimumAmount ?? 0);
+    const [minimumAmountValue, setMinimumAmountValue] = useState(0);
+    const [maximumAmount, setMaximumAmount] = useState(launchpadConfig?.maximumAmount ?? 0);
     const [isMinimumBought, setIsMinimumBought] = useState(false);
+
 
     useEffect(() => {
       axios.get(`${BACKEND_URL}/presale/prices`).then((response) => {
@@ -58,20 +70,20 @@ export default function Tokensale() {
     }, []);
 
      useEffect(() => {
-      axios.get(`${BACKEND_URL}/presale/order/?address=${account}`).then((response) => {
+      axios.get(`${BACKEND_URL}/launchpad/${parseInt(projectId)}/?address=${account}`).then((response) => {
           const allOrders = response.data as Array<any>;
           if (allOrders.length){
             const totalTokens = allOrders.map( function(elt){ // assure the value can be converted into an integer
               return parseFloat(elt.token_amount) ?? 0;
             }).reduce((a, b) => a + b, 0);
-            if (totalTokens >= 133000){
+            if (totalTokens >= minimumAmount){
                 setIsMinimumBought(true)
             }
           }
       }).catch((error) => {
         console.log("Error", error);
       })
-    }, [account, setIsMinimumBought]);
+    }, [account, setIsMinimumBought, projectId, minimumAmount]);
 
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
@@ -83,10 +95,10 @@ export default function Tokensale() {
   const handleInputSelect = useCallback(
     (inputCurrency) => {
       setCurrency(inputCurrency)
-      const ta = calculateTokenAmount(amount, inputCurrency, prices, 0.075)
+      const ta = calculateTokenAmount(amount, inputCurrency, prices, launchpadConfig?.price)
       setTokenAmount(ta)
     },
-    [setCurrency, setTokenAmount, amount, prices]
+    [setCurrency, setTokenAmount, amount, prices, launchpadConfig]
   );
 
   const handleMaxInput = useCallback(() => {
@@ -98,36 +110,42 @@ export default function Tokensale() {
   const handleTypeInput = useCallback(
     (value: string) => {
       setAmount(value)
-      const ta = calculateTokenAmount(value, currency, prices, 0.075)
+      const ta = calculateTokenAmount(value, currency, prices, launchpadConfig?.price)
       setTokenAmount(ta)
-        const mav = calculateMinimumAmountValue(minimumAmount, currency, prices, 0.075).toPrecision(5)
+        const mav = calculateMinimumAmountValue(minimumAmount, currency, prices, launchpadConfig?.price)
       setMinimumAmountValue(mav)
     },
-    [setAmount, setTokenAmount, currency, prices, setMinimumAmountValue, minimumAmount]
+    [setAmount, setTokenAmount, currency, prices, setMinimumAmountValue, launchpadConfig, minimumAmount]
   )
 
   const currencyAmount = tryParseAmount(amount, currency);
-    const success = () => {
-        history.push(`history`)
-    };
-  const [approveACallback] = useTransferCallback(PRESALE_RECEIVER_ADDRESS, success, currencyAmount);
-    
+
+  const success = () => {
+      history.push(`/launchpad/${projectId}/history`)
+  };
+
+  const [approveACallback] = useTransferCallback(launchpadConfig?.address ?? "", success, currencyAmount, parseInt(projectId));
+
+    if (launchpadConfig === undefined){
+      return <Redirect to="/launchpad" />
+    }
+
   return (
     <>
-      <TokensaleCardNav />
+      <LaunchpadTokensaleNav projectId={parseInt(projectId)}/>
       <AppBody>
         <StyledPageHeader>
           <Flex alignItems="center">
             <Details>
-              <Heading mb="8px">Tokensale (PRIVATE)</Heading>
+              <Heading mb="8px">{launchpadConfig.header}</Heading>
                 <Text color="textSubtle" fontSize="14px">
-                   Minimum buy amount 133333 tokens
+                   Minimum buy amount {launchpadConfig.minimumAmount} tokens
                 </Text>
                 <Text color="textSubtle" fontSize="14px">
-                  Maximum (total amount) is limited to 18.000.000 tokens
+                  Maximum (total amount) is limited to {launchpadConfig.maximumAmount} tokens
                 </Text>
                 <Text color="textSubtle" fontSize="14px">
-                  Buy private sale tokens now for $0.075 per token
+                  Buy {launchpadConfig.name} tokens now for ${launchpadConfig.price} per token
                 </Text>
 
             </Details>
@@ -181,6 +199,7 @@ export default function Tokensale() {
                 ) : (
                     <Button id="join-pool-button" onClick={approveACallback}>{TranslateString(168, 'Buy tokens')}</Button>
                 )}
+
 
             <RowBetween align="center">
                 <Text fontSize="16px">{TranslateString(88, 'Token amount')}</Text>

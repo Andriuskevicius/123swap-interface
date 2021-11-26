@@ -80,7 +80,7 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
       }`
 }
 
-export function calculateTokenAmount(amount, currency, prices){
+export function calculateTokenAmount(amount, currency, prices, tokenPrice){
   let exchange_rate = Number(1.0);
 
   prices.forEach(function (price) {
@@ -89,10 +89,10 @@ export function calculateTokenAmount(amount, currency, prices){
     }
   });
 
-  return Number(amount) * Number(exchange_rate) / Number(0.075);
+  return Number(amount) * Number(exchange_rate) / Number(tokenPrice);
 }
 
-export function calculateMinimumAmountValue(amount, currency, prices){
+export function calculateMinimumAmountValue(minAmount, currency, prices, tokenPrice){
   let exchange_rate = Number(1.0);
 
   prices.forEach(function (price) {
@@ -101,5 +101,5 @@ export function calculateMinimumAmountValue(amount, currency, prices){
     }
   });
 
-  return Number(133333) / exchange_rate * Number(0.075);
+  return Number(minAmount) / exchange_rate * Number(tokenPrice);
 }

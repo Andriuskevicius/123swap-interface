@@ -23,6 +23,11 @@ import Tokensale from "./Tokensale/index";
 import TokensaleHistory from "./TokensaleHistory/index";
 import TokensaleReferrals from "./TokensaleReferrals/index";
 
+import Launchpad from "./Launchpad/Launchpad";
+import LaunchpadTokensale from "./LaunchpadTokensale/index";
+import LaunchpadTokensaleHistory from "./LaunchpadTokensaleHistory/index";
+
+
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
@@ -158,6 +163,9 @@ export default function App() {
                       <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
 
                       <Route exact path="/tokensale" component={Tokensale} />
+                      <Route exact path="/launchpad" component={Launchpad} />
+                      <Route exact path="/launchpad/:projectId" component={LaunchpadTokensale} />
+                      <Route exact path="/launchpad/:projectId/history" component={LaunchpadTokensaleHistory} />
                       <Route exact path="/history" component={TokensaleHistory} />
                       <Route exact path="/referrals" component={TokensaleReferrals} />
 
