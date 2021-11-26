@@ -44,7 +44,7 @@ export default function Tokensale() {
     const [amount, setAmount] = useState("0");
     const [tokenAmount, setTokenAmount] = useState(0);
     const [prices, setPrices] = useState([]);
-    const [minimumAmount, setMinimumAmount] = useState(133333);
+    const [minimumAmount, setMinimumAmount] = useState(13333);
     const [minimumAmountValue, setMinimumAmountValue] = useState("0");
     const [maximumAmount, setMaximumAmount] = useState(18000000);
     const [isMinimumBought, setIsMinimumBought] = useState(false);
@@ -64,7 +64,7 @@ export default function Tokensale() {
             const totalTokens = allOrders.map( function(elt){ // assure the value can be converted into an integer
               return parseFloat(elt.token_amount) ?? 0;
             }).reduce((a, b) => a + b, 0);
-            if (totalTokens >= 133000){
+            if (totalTokens >= 13300){
                 setIsMinimumBought(true)
             }
           }
@@ -121,7 +121,7 @@ export default function Tokensale() {
             <Details>
               <Heading mb="8px">Tokensale (PRIVATE)</Heading>
                 <Text color="textSubtle" fontSize="14px">
-                   Minimum buy amount 133333 tokens
+                   Minimum buy amount 13333 tokens
                 </Text>
                 <Text color="textSubtle" fontSize="14px">
                   Maximum (total amount) is limited to 18.000.000 tokens
