@@ -37,14 +37,16 @@ const PRESALE_RECEIVER_ADDRESS = process.env.REACT_APP_PRESALE_RECEIVER_ADDRESS 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? ""
 
 export default function Tokensale() {
-  const theme = useContext(ThemeContext)
-  const { account } = useActiveWeb3React()
-  const TranslateString = useI18n()
+    const TOKEN_PRICE = 0.075;
+    const MINIMUM_AMOUNT = 13333;
+    const theme = useContext(ThemeContext)
+    const { account } = useActiveWeb3React()
+    const TranslateString = useI18n()
     const history = useHistory()
     const [amount, setAmount] = useState("0");
     const [tokenAmount, setTokenAmount] = useState(0);
     const [prices, setPrices] = useState([]);
-    const [minimumAmount, setMinimumAmount] = useState(13333);
+    const [minimumAmount, setMinimumAmount] = useState(MINIMUM_AMOUNT);
     const [minimumAmountValue, setMinimumAmountValue] = useState("0");
     const [maximumAmount, setMaximumAmount] = useState(18000000);
     const [isMinimumBought, setIsMinimumBought] = useState(false);
@@ -64,7 +66,7 @@ export default function Tokensale() {
             const totalTokens = allOrders.map( function(elt){ // assure the value can be converted into an integer
               return parseFloat(elt.token_amount) ?? 0;
             }).reduce((a, b) => a + b, 0);
-            if (totalTokens >= 13300){
+            if (totalTokens >= MINIMUM_AMOUNT * 0.95) {
                 setIsMinimumBought(true)
             }
           }
@@ -83,7 +85,7 @@ export default function Tokensale() {
   const handleInputSelect = useCallback(
     (inputCurrency) => {
       setCurrency(inputCurrency)
-      const ta = calculateTokenAmount(amount, inputCurrency, prices, 0.075)
+      const ta = calculateTokenAmount(amount, inputCurrency, prices, TOKEN_PRICE)
       setTokenAmount(ta)
     },
     [setCurrency, setTokenAmount, amount, prices]
@@ -98,9 +100,9 @@ export default function Tokensale() {
   const handleTypeInput = useCallback(
     (value: string) => {
       setAmount(value)
-      const ta = calculateTokenAmount(value, currency, prices, 0.075)
+      const ta = calculateTokenAmount(value, currency, prices, TOKEN_PRICE)
       setTokenAmount(ta)
-        const mav = calculateMinimumAmountValue(minimumAmount, currency, prices, 0.075).toPrecision(5)
+        const mav = calculateMinimumAmountValue(minimumAmount, currency, prices, TOKEN_PRICE).toPrecision(5)
       setMinimumAmountValue(mav)
     },
     [setAmount, setTokenAmount, currency, prices, setMinimumAmountValue, minimumAmount]
@@ -121,13 +123,13 @@ export default function Tokensale() {
             <Details>
               <Heading mb="8px">Tokensale (PRIVATE)</Heading>
                 <Text color="textSubtle" fontSize="14px">
-                   Minimum buy amount 13333 tokens
+                   Minimum buy amount {MINIMUM_AMOUNT} tokens
                 </Text>
                 <Text color="textSubtle" fontSize="14px">
                   Maximum (total amount) is limited to 18.000.000 tokens
                 </Text>
                 <Text color="textSubtle" fontSize="14px">
-                  Buy private sale tokens now for $0.075 per token
+                  Buy private sale tokens now for ${TOKEN_PRICE} per token
                 </Text>
 
             </Details>
