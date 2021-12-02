@@ -4755,6 +4755,69 @@
     "decimals": 18,
     "chainId": 66,
     "logoURI": "https://static.coinall.ltd/cdn/explorer/okexchain/exchain_bchk.png"
+  },
+  {
+    "name": "WCRO Token",
+    "symbol": "WCRO",
+    "address": "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23",
+    "chainId": 25,
+    "decimals": 18,
+    "logoURI": "https://vvs.finance/images/tokens/0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23.svg",
+    "tags": ["mainnet"]
+  },
+  {
+    "name": "VVS Token",
+    "symbol": "VVS",
+    "address": "0x2D03bECE6747ADC00E1a131BBA1469C15fD11e03",
+    "chainId": 25,
+    "decimals": 18,
+    "logoURI": "https://vvs.finance/images/tokens/0x2D03bECE6747ADC00E1a131BBA1469C15fD11e03.svg",
+    "tags": ["mainnet"]
+  },
+  {
+    "name": "ETH Token",
+    "symbol": "ETH",
+    "address": "0xe44Fd7fCb2b1581822D0c862B68222998a0c299a",
+    "chainId": 25,
+    "decimals": 18,
+    "logoURI": "https://vvs.finance/images/tokens/0xe44Fd7fCb2b1581822D0c862B68222998a0c299a.svg",
+    "tags": ["mainnet"]
+  },
+  {
+    "name": "USDC Token",
+    "symbol": "USDC",
+    "address": "0xc21223249CA28397B4B6541dfFaEcC539BfF0c59",
+    "chainId": 25,
+    "decimals": 6,
+    "logoURI": "https://vvs.finance/images/tokens/0xc21223249CA28397B4B6541dfFaEcC539BfF0c59.svg",
+    "tags": ["mainnet"]
+  },
+  {
+    "name": "WBTC Token",
+    "symbol": "WBTC",
+    "address": "0x062E66477Faf219F25D27dCED647BF57C3107d52",
+    "chainId": 25,
+    "decimals": 8,
+    "logoURI": "https://vvs.finance/images/tokens/0x062E66477Faf219F25D27dCED647BF57C3107d52.svg",
+    "tags": ["mainnet"]
+  },
+    {
+    "name": "Shiba Inu",
+    "symbol": "SHIBA",
+    "address": "0xbED48612BC69fA1CaB67052b42a95FB30C1bcFee",
+    "chainId": 25,
+    "decimals": 18,
+    "logoURI": "https://vvs.finance/images/tokens/0xbED48612BC69fA1CaB67052b42a95FB30C1bcFee.svg",
+    "tags": ["mainnet"]
+  },
+    {
+    "name": "Dai Stablecoin",
+    "symbol": "DAI",
+    "address": "0xF2001B145b43032AAF5Ee2884e456CCd805F677D",
+    "chainId": 25,
+    "decimals": 18,
+    "logoURI": "https://vvs.finance/images/tokens/0xF2001B145b43032AAF5Ee2884e456CCd805F677D.svg",
+    "tags": ["mainnet"]
   }
   ]
 }

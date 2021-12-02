@@ -2,6 +2,7 @@ import { Pair as UniPair} from '@uniswap/v2-sdk'
 import { Token as UniToken } from '@uniswap/sdk-core';
 import { Pair as SushiPair, Token as SushiToken, Router as SushiRouter} from '@sushiswap/sdk'
 import { Pair as PartyPair, Token as PartyToken} from '@partyswap-libs/sdk'
+import { Pair as VvsPair} from 'vvs-sdk'
 import { Pair as PangolinPair, Token as PangolinToken, Router as PangolionRouter, CAVAX as PangolinCAVAX, WAVAX} from '@pangolindex/sdk'
 import { Pair as PolygonPair} from 'quickswap-sdk'
 import { Pair as SpookyPair} from '@ac32/spookyswap-sdk'
@@ -20,6 +21,7 @@ export const ONE: Currency = new Currency(18, 'ONE', 'ONE');
 export const MOVR: Currency = new Currency(18, 'MOVR', 'MOVR');
 export const HT: Currency = new Currency(18, 'HT', 'HT');
 export const OKT: Currency = new Currency(18, 'OKT', 'OKT');
+export const CRO: Currency = new Currency(18, 'CRO', 'CRO');
 export const CAVAX = PangolinCAVAX;
 
 export type NetworkConfig = {
@@ -181,6 +183,22 @@ const okt: NetworkConfig = {
     routerClass: Router,
     routerABI: IUniswapV2Router02ABI
 };
+
+const cro: NetworkConfig = {
+    title: "CRO",
+    chainId: 25,
+    pair: VvsPair,
+    icon: "/images/coins/cro.png",
+    currency: CRO,
+    injected:  new InjectedConnector({supportedChainIds: [25]}),
+    multicall: '0x5e954f5972EC6BFc7dECd75779F10d848230345F',
+    wrappedCurrency: new Token(25, '0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23', 18, 'WMATIC', 'Wrapped MATIC'),
+    router: "0x145863Eb42Cf62847A6Ca784e6416C1682b1b2Ae",
+    scanUrl: 'cronos.crypto.org/explorer',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
 export const networks: Map<string, NetworkConfig> = new Map([
     ["BNB", bnb],
     ["ETH", eth] ,
@@ -189,4 +207,5 @@ export const networks: Map<string, NetworkConfig> = new Map([
     ["ONE", one],
     ["MOVR", movr],
     ["HT", ht],
-    ["OKT", okt]]);
+    ["OKT", okt],
+    ["CRO", cro]]);
