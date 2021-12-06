@@ -203,6 +203,7 @@ export const networks: Map<string, NetworkConfig> = new Map([
     ["BNB", bnb],
     ["ETH", eth] ,
     ["MATIC", matic],
+    ["FTM", ftm],
     ["AVAX", avax],
     ["ONE", one],
     ["MOVR", movr],

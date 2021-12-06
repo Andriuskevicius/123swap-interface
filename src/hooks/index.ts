@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { injected } from '../connectors'
 import { NetworkContextName } from '../constants'
+import {sendStatLogin} from "../utils/stats";
 
 export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & { chainId?: ChainId } {
   const context = useWeb3ReactCore<Web3Provider>()
@@ -16,7 +17,7 @@ export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & 
 }
 
 export function useEagerConnect() {
-  const { activate, active } = useWeb3ReactCore() // specifically using useWeb3ReactCore because of what this hook does
+  const { activate, active, account, chainId } = useWeb3ReactCore() // specifically using useWeb3ReactCore because of what this hook does
   const [tried, setTried] = useState(false)
 
   useEffect(() => {
@@ -40,8 +41,9 @@ export function useEagerConnect() {
   useEffect(() => {
     if (active) {
       setTried(true)
+      sendStatLogin(account, chainId)
     }
-  }, [active])
+  }, [active, account, chainId])
 
   return tried
 }
@@ -51,7 +53,7 @@ export function useEagerConnect() {
  * and out after checking what network theyre on
  */
 export function useInactiveListener(suppress = false) {
-  const { active, error, activate } = useWeb3ReactCore() // specifically using useWeb3React because of what this hook does
+  const { active, error, activate, account, chainId } = useWeb3ReactCore() // specifically using useWeb3React because of what this hook does
 
   useEffect(() => {
     const { ethereum } = window
@@ -70,6 +72,7 @@ export function useInactiveListener(suppress = false) {
           activate(injected, undefined, true).catch((e) => {
             console.error('Failed to activate after accounts changed', e)
           })
+          sendStatLogin(account, chainId)
         }
       }
 
@@ -84,5 +87,5 @@ export function useInactiveListener(suppress = false) {
       }
     }
     return undefined
-  }, [active, error, suppress, activate])
+  }, [active, error, suppress, activate, account, chainId])
 }

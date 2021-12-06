@@ -35,6 +35,7 @@ import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
+import {sendStatSwap} from "../../utils/stats";
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -61,7 +62,7 @@ const Swap = () => {
     setSyrupTransactionType('')
   }, [])
 
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
   const [isExpertMode] = useExpertModeManager()
@@ -181,6 +182,7 @@ const Swap = () => {
           swapErrorMessage: undefined,
           txHash: hash,
         }))
+        sendStatSwap(account, chainId, {hash})
       })
       .catch((error) => {
         setSwapState((prevState) => ({
@@ -190,7 +192,7 @@ const Swap = () => {
           txHash: undefined,
         }))
       })
-  }, [priceImpactWithoutFee, swapCallback, setSwapState])
+  }, [priceImpactWithoutFee, swapCallback, setSwapState, account, chainId])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
