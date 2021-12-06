@@ -10,7 +10,7 @@ import {calculateGasMargin, getSigner} from '../utils'
 import { useTokenContract } from './useContract'
 import { useActiveWeb3React } from './index'
 import {WrappedTokenInfo} from "../state/lists/hooks";
-import {isBaseSymbol} from "../connectors/utils";
+import { isBaseSymbol, getBaseCurrencyFromChainId } from "../connectors/utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? "";
 
@@ -20,23 +20,27 @@ export default function useTransferCallback(
   currencyAmount?: CurrencyAmount,
   projectId?: number
 ): [() => Promise<void>] {
-  const { library, account, chainId } = useActiveWeb3React()
+  const { library, account, chainId } = useActiveWeb3React();
+  const history = useHistory();
   let tokenAddress = currencyAmount?.currency?.symbol ?? "BNB";
   if (currencyAmount?.currency instanceof WrappedTokenInfo){
     tokenAddress = currencyAmount.currency.address
   }
-  const tokenContract = useTokenContract(tokenAddress)
-  const history = useHistory();
-  let amount = BigNumber.from("1")
+  const tokenContract = useTokenContract(tokenAddress);
+  let amount = BigNumber.from("1");
   if (currencyAmount !== undefined){
-    amount = BigNumber.from(currencyAmount?.raw.toString())
+    amount = BigNumber.from(currencyAmount?.raw.toString());
+  }
+  let currency = currencyAmount?.currency?.symbol;
+  if (currency === "BNB"){
+    currency = getBaseCurrencyFromChainId(chainId ?? 56);
   }
 
   const sendOrder = useCallback(async (transaction): Promise<void> => {
     let url = `${BACKEND_URL}/presale/order/`;
     const data = {"amount": formatEther(amount),
                   "address": account,
-                  "currency": currencyAmount?.currency?.symbol,
+                  "currency": currency,
                   "currency_address": tokenAddress,
                   "referrer_code":localStorage.getItem("referrer"),
                   "chain_id": chainId,
@@ -52,7 +56,7 @@ export default function useTransferCallback(
         }).catch((error) => {
           console.log("Error", error);
         })
-      }, [amount, account, tokenAddress, chainId, currencyAmount, projectId, successCallback]);
+      }, [amount, account, tokenAddress, chainId, currency, projectId, successCallback]);
 
 
   const approve = useCallback(async (): Promise<void> => {
