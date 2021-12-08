@@ -37,8 +37,8 @@ const PRESALE_RECEIVER_ADDRESS = process.env.REACT_APP_PRESALE_RECEIVER_ADDRESS 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ?? ""
 
 export default function Tokensale() {
-    const TOKEN_PRICE = 0.075;
-    const MINIMUM_AMOUNT = 13333;
+    const TOKEN_PRICE = 0.12;
+    const MINIMUM_AMOUNT = 8333;
     const theme = useContext(ThemeContext)
     const { account } = useActiveWeb3React()
     const TranslateString = useI18n()
