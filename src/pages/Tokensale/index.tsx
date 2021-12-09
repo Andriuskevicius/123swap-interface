@@ -122,74 +122,12 @@ export default function Tokensale() {
           <Flex alignItems="center">
             <Details>
               <Heading mb="8px">Tokensale (PRIVATE)</Heading>
-                <Text color="textSubtle" fontSize="14px">
-                   Minimum buy amount {MINIMUM_AMOUNT} tokens
+                <Text color="textSubtle" fontSize="16px">
+                   Private sale ongoing <a style={{color: "#ffca09", fontWeight: 500}} href="mailto:ceo@123swap.finance">ceo@123swap.finance</a>
                 </Text>
-                <Text color="textSubtle" fontSize="14px">
-                  Maximum (total amount) is limited to 18.000.000 tokens
-                </Text>
-                <Text color="textSubtle" fontSize="14px">
-                  Buy private sale tokens now for ${TOKEN_PRICE} per token
-                </Text>
-
             </Details>
           </Flex>
         </StyledPageHeader>
-      <CardBody>
-        <AutoColumn gap="md">
-            <CurrencyInputPanel
-                    label={TranslateString(194, 'Amount')}
-                    value={amount}
-                    showMaxButton={false}
-                    currency={currency}
-                    onUserInput={handleTypeInput}
-                    onMax={handleMaxInput}
-                    onCurrencySelect={handleInputSelect}
-                    otherCurrency={currencies.OUTPUT}
-                    includedTokenList={["0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
-                        "0x0dE8FCAE8421fc79B29adE9ffF97854a424Cad09",
-                        "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-                        "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-                        "0x55d398326f99059fF775485246999027B3197955",
-                        "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
-                        "0x4Fabb145d64652a948d72533023f6E7A623C7C53",
-                        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-                        "0xaD6D458402F60fD3Bd25163575031ACDce07538D",
-                        "0x19860CCB0A68fd4213aB9D8266F7bBf05A8dDe98",
-                        "0xc7198437980c041c805A1EDcbA50c1Ce5db95118",
-                        "0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664",
-                        "0x049d68029688eAbF473097a2fC38ef61633A3C7A",
-                        "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75",
-                        "0xB44a9B6905aF7c801311e8F4E76932ee959c663C",
-                        "0x5D9ab5522c64E1F6ef5e3627ECCc093f56167818",
-                        "0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D",
-                        "0x0aB43550A6915F9f67d0c454C2E90385E6497EaA",
-                        "0x985458E523dB3d53125813eD68c274899e9DfAb4",
-                        "0x3C2B8Be99c50593081EAA2A724F0B8285F5aba8f"]}
-                    id="swap-currency-input"
-                  />
-                {!account ? (
-                    <ConnectWalletButton width="100%" />
-                ) : !currency ? (
-                    <Button id="join-pool-button" disabled>{TranslateString(168, 'Select currency')}</Button>
-                ) : !currencyAmount ? (
-                    <Button id="join-pool-button" disabled>{TranslateString(168, 'Enter an amount')}</Button>
-                ) : ((minimumAmount > tokenAmount) && !isMinimumBought)? (
-                    <Button id="join-pool-button" disabled>{TranslateString(168, `Amount has to bee at least ${minimumAmountValue}`)}</Button>
-                ) : (selectedCurrencyBalance && selectedCurrencyBalance.lessThan(currencyAmount)) ? (
-                    <Button id="join-pool-button" disabled>{TranslateString(168, `Not enought balance`)}</Button>
-                ) : (maximumAmount < tokenAmount) ? (
-                    <Button id="join-pool-button" disabled>{TranslateString(168, `Token amount can't reach ${maximumAmount}`)}</Button>
-                ) : (
-                    <Button id="join-pool-button" onClick={approveACallback}>{TranslateString(168, 'Buy tokens')}</Button>
-                )}
-
-            <RowBetween align="center">
-                <Text fontSize="16px">{TranslateString(88, 'Token amount')}</Text>
-                <Text fontSize="16px">{tokenAmount}</Text>
-              </RowBetween>
-            </AutoColumn>
-        </CardBody>
       </AppBody>
     </>
   )
