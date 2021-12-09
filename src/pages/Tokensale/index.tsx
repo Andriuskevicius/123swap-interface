@@ -123,7 +123,7 @@ export default function Tokensale() {
             <Details>
               <Heading mb="8px">Tokensale (PRIVATE)</Heading>
                 <Text color="textSubtle" fontSize="16px">
-                   Private sale ongoing <a style={{color: "#ffca09", fontWeight: 500}} href="mailto:ceo@123swap.finance">ceo@123swap.finance</a>
+                   Private sale ongoing <a style={{color: "#f7941e", fontWeight: 500}} href="mailto:ceo@123swap.finance">ceo@123swap.finance</a>
                 </Text>
             </Details>
           </Flex>
