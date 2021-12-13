@@ -275,8 +275,9 @@ const Swap = () => {
         transactionType={syrupTransactionType}
         onConfirm={handleConfirmSyrupWarning}
       />
-    <h5 style={{marginBottom:50, fontWeight:300, fontSize:18}}>Ethereum, BSC, Polygon, Avalanche, Harmony, Moonriver, HECO, OKex, Fantom, Cronos live! More coming... TBA</h5>
-      <CardNav />
+    <h5 style={{fontWeight:300, fontSize:18}}>Ethereum, BSC, Polygon, Avalanche, Harmony, Moonriver, HECO, OKex, Fantom,</h5>
+     <h5 style={{marginBottom:50, fontWeight:300, fontSize:18}}>Cronos, Arbitrum, xDai, Palm live! More coming... TBA</h5>
+       <CardNav />
       <AppBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal

@@ -6,7 +6,7 @@ import { Pair as VvsPair} from 'vvs-sdk'
 import { Pair as PangolinPair, Token as PangolinToken, Router as PangolionRouter, CAVAX as PangolinCAVAX, WAVAX} from '@pangolindex/sdk'
 import { Pair as PolygonPair} from 'quickswap-sdk'
 import { Pair as SpookyPair} from '@ac32/spookyswap-sdk'
-import {TokenAmount, Pair, Currency, Token, Router, ChainId} from '@123swap/swap-sdk'
+import {TokenAmount, Pair, Currency, Token, Router, ChainId, WETH} from '@123swap/swap-sdk'
 import {InjectedConnector} from "@web3-react/injected-connector";
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { abi as IPangolinRouterABI } from '@pangolindex/exchange-contracts/artifacts/contracts/pangolin-periphery/PangolinRouter.sol/PangolinRouter.json'
@@ -22,6 +22,10 @@ export const MOVR: Currency = new Currency(18, 'MOVR', 'MOVR');
 export const HT: Currency = new Currency(18, 'HT', 'HT');
 export const OKT: Currency = new Currency(18, 'OKT', 'OKT');
 export const CRO: Currency = new Currency(18, 'CRO', 'CRO');
+export const XDAI: Currency = new Currency(18, 'XDAI', 'XDAI');
+export const CELO: Currency = new Currency(18, 'CELO', 'CELO');
+export const PALM: Currency = new Currency(18, 'PALM', 'PALM');
+export const TLOS: Currency = new Currency(18, 'TLOS', 'TLOS');
 export const CAVAX = PangolinCAVAX;
 
 export type NetworkConfig = {
@@ -199,6 +203,88 @@ const cro: NetworkConfig = {
     routerClass: Router,
     routerABI: IUniswapV2Router02ABI
 };
+
+
+const arb: NetworkConfig = {
+    title: "ARBITRUM",
+    chainId: ChainId.ARBITRUM,
+    pair: SushiPair,
+    icon: "/images/coins/arbitrum.svg",
+    currency: ETHER_UNI,
+    injected:  new InjectedConnector({supportedChainIds: [ChainId.ARBITRUM]}),
+    multicall: '0x80C7DD17B01855a6D2347444a0FCC36136a314de',
+    wrappedCurrency: WETH[ChainId.ARBITRUM],
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'arbiscan.io',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
+const xdai: NetworkConfig = {
+    title: "XDAI",
+    chainId: ChainId.XDAI,
+    pair: SushiPair,
+    icon: "/images/coins/xdai.svg",
+    currency: XDAI,
+    injected:  new InjectedConnector({supportedChainIds: [ChainId.XDAI]}),
+    multicall: '0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287',
+    wrappedCurrency: WETH[ChainId.XDAI],
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'blockscout.com/poa/xdai',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
+const celo: NetworkConfig = {
+    title: "CELO",
+    chainId: ChainId.CELO,
+    pair: SushiPair,
+    icon: "/images/coins/celo.svg",
+    currency: CELO,
+    injected:  new InjectedConnector({supportedChainIds: [ChainId.CELO]}),
+    multicall: '0x9aac9048fC8139667D6a2597B902865bfdc225d3',
+    wrappedCurrency: WETH[ChainId.CELO],
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'explorer.celo.org',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
+const palm: NetworkConfig = {
+    title: "PALM",
+    chainId: ChainId.PALM,
+    pair: SushiPair,
+    icon: "/images/coins/palm.png",
+    currency: PALM,
+    injected:  new InjectedConnector({supportedChainIds: [ChainId.PALM]}),
+    multicall: '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',
+    wrappedCurrency: WETH[ChainId.PALM],
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'explorer.palm.io',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
+const telos: NetworkConfig = {
+    title: "TLOS",
+    chainId: ChainId.TELOS,
+    pair: SushiPair,
+    icon: "/images/coins/telos.png",
+    currency: TLOS,
+    injected:  new InjectedConnector({supportedChainIds: [ChainId.TELOS]}),
+    multicall: '0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3',
+    wrappedCurrency: WETH[ChainId.TELOS],
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    scanUrl: 'rpc1.us.telos.net/v2/explore',
+    tokenClass: Token,
+    routerClass: Router,
+    routerABI: IUniswapV2Router02ABI
+};
+
 export const networks: Map<string, NetworkConfig> = new Map([
     ["BNB", bnb],
     ["ETH", eth] ,
@@ -209,4 +295,10 @@ export const networks: Map<string, NetworkConfig> = new Map([
     ["MOVR", movr],
     ["HT", ht],
     ["OKT", okt],
-    ["CRO", cro]]);
+    ["CRO", cro],
+    ["ARBITRUM", arb],
+    ["XDAI", xdai],
+    ["CELO", celo],
+    ["PALM", palm],
+    ["TLOS", telos]
+]);
