@@ -12,6 +12,10 @@ const StyledNav = styled.div`
   justify-content: center;
   max-width: 50%;
   
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+  
   a {
     flex-basis: 100%;
     color: #353945;
@@ -19,6 +23,10 @@ const StyledNav = styled.div`
     padding: 5px 40px;
     background: transparent !important;
     border-radius: 0 !important;
+    
+    @media (max-width: 576px) {
+      padding: 5px 25px;
+    }
   }
 `
 

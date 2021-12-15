@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@123swap/swap-sdk": "^2.3.4",
-    "@123swap/uikit": "^0.23.4",
+    "@123swap/uikit": "^0.23.48",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
