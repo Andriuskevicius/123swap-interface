@@ -4,9 +4,12 @@ import { Card } from '@123swap/uikit'
 
 export const BodyWrapper = styled(Card)`
   position: relative;
-  max-width: 436px;
+  max-width: 736px;
   width: 100%;
   z-index: 5;
+  padding: 20px;
+  background: #18191D;
+  border: solid 1px #353945;
 `
 
 /**

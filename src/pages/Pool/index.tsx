@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@123swap/swap-sdk'
-import { Button, CardBody, Text } from '@123swap/uikit'
+import { Button, CardBody, Text, WarningIcon, Flex } from '@123swap/uikit'
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
@@ -9,7 +9,7 @@ import FullPositionCard from 'components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import { StyledInternalLink } from 'components/Shared'
 import { LightCard } from 'components/Card'
-import { RowBetween } from 'components/Row'
+import { RowStart } from 'components/Row'
 import { AutoColumn } from 'components/Column'
 
 import { useActiveWeb3React } from 'hooks'
@@ -56,8 +56,8 @@ export default function Pool() {
 
   return (
     <>
-      <CardNav activeIndex={1} />
       <AppBody>
+        <CardNav activeIndex={1} />
         <PageHeader
           title={TranslateString(262, 'Liquidity')}
           description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
@@ -66,10 +66,10 @@ export default function Pool() {
             {TranslateString(168, 'Add Liquidity')}
           </Button>
         </PageHeader>
-        <AutoColumn gap="lg" justify="center">
-          <CardBody>
+        <AutoColumn gap="lg" justify="flex-start">
+          <CardBody style={{ width: '100%'}}>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
-              <RowBetween padding="0 8px">
+              <RowStart>
                 <Text color={theme.colors.text}>{TranslateString(107, 'Your Liquidity')}</Text>
                 <Question
                   text={TranslateString(
@@ -77,16 +77,19 @@ export default function Pool() {
                     'When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below.'
                   )}
                 />
-              </RowBetween>
+              </RowStart>
 
               {!account ? (
-                <LightCard padding="40px">
-                  <Text color="textDisabled" textAlign="center">
+                <LightCard padding="10px 25px" display="flex" style={{width: "fit-content"}}>
+                  <Flex justifyContent="center">
+                    <WarningIcon width="24px" mr="25px" color={theme.colors.text} />
+                    <Text color="textDisabled" textAlign="center">
                     {TranslateString(156, 'Connect to a wallet to view your liquidity.')}
-                  </Text>
+                    </Text>
+                  </Flex>
                 </LightCard>
               ) : v2IsLoading ? (
-                <LightCard padding="40px">
+                <LightCard padding="10px">
                   <Text color="textDisabled" textAlign="center">
                     <Dots>Loading</Dots>
                   </Text>
@@ -98,18 +101,18 @@ export default function Pool() {
                   ))}
                 </>
               ) : (
-                <LightCard padding="40px">
+                <LightCard padding="10px">
                   <Text color="textDisabled" textAlign="center">
                     {TranslateString(104, 'No liquidity found.')}
                   </Text>
                 </LightCard>
               )}
 
-              <div>
-                <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
+              <div style={{ marginTop: '1rem', borderTop: 'solid 1px #353945'}}>
+                <Text fontSize="16px" style={{ padding: '1.5rem 0 .5rem 0'}}>
                   {TranslateString(106, "Don't see a pool you joined?")}{' '}
                   <StyledInternalLink id="import-pool-link" to="/find">
-                    {TranslateString(108, 'Import it.')}
+                    {TranslateString(108, 'Import now')}
                   </StyledInternalLink>
                 </Text>
                 <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>

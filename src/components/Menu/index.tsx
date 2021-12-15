@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from 'react'
 import { Menu as UikitMenu} from '@123swap/uikit'
 import { useWeb3React } from '@web3-react/core'

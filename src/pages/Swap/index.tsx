@@ -273,9 +273,13 @@ const Swap = () => {
         transactionType={syrupTransactionType}
         onConfirm={handleConfirmSyrupWarning}
       />
-      <CardNav />
       <AppBody>
         <Wrapper id="swap-page">
+          <CardNav />
+          <PageHeader
+            title={TranslateString(8, 'Exchange')}
+            description={TranslateString(1192, 'Trade tokens in an instant')}
+          />
           <ConfirmSwapModal
             isOpen={showConfirm}
             trade={trade}
@@ -288,10 +292,6 @@ const Swap = () => {
             onConfirm={handleSwap}
             swapErrorMessage={swapErrorMessage}
             onDismiss={handleConfirmDismiss}
-          />
-          <PageHeader
-            title={TranslateString(8, 'Exchange')}
-            description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
             <AutoColumn gap="md">
@@ -362,7 +362,7 @@ const Swap = () => {
               ) : null}
 
               {showWrap ? null : (
-                <Card padding=".25rem .75rem 0 .75rem" borderRadius="20px">
+                <Card padding=".5rem 0 0 0" borderRadius="20px">
                   <AutoColumn gap="4px">
                     {Boolean(trade) && (
                       <RowBetween align="center">
@@ -384,7 +384,10 @@ const Swap = () => {
                 </Card>
               )}
             </AutoColumn>
-            <BottomGrouping>
+          </CardBody>
+        </Wrapper>
+      </AppBody>
+       <BottomGrouping>
               {!account ? (
                 <ConnectWalletButton width="100%" />
               ) : showWrap ? (
@@ -469,9 +472,6 @@ const Swap = () => {
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
               {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
             </BottomGrouping>
-          </CardBody>
-        </Wrapper>
-      </AppBody>
       <AdvancedSwapDetailsDropdown trade={trade} />
     </>
   )

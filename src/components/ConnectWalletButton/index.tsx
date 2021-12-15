@@ -1,5 +1,6 @@
+// @ts-nocheck
 import React from 'react'
-import { Button, ButtonProps, useWalletModal} from '@123swap/uikit'
+import { Button, ButtonProps, useWalletModal, ArrowRightIcon} from '@123swap/uikit'
 import useI18n from 'hooks/useI18n'
 import useAuth from 'hooks/useAuth'
 
@@ -9,7 +10,7 @@ const UnlockButton: React.FC<ButtonProps> = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
+    <Button endIcon={<ArrowRightIcon />} onClick={onPresentConnectModal} {...props}>
       {TranslateString(292, 'Unlock Wallet')}
     </Button>
   )

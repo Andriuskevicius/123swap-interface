@@ -15,21 +15,23 @@ import { useActiveWeb3React } from '../../hooks'
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
+  border-radius: 8px;
+  border: solid 1px #353945;
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
   height: 34px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   background-color: transparent;
   color: ${({ selected, theme }) => (selected ? theme.colors.text : '#FFFFFF')};
-  border-radius: 12px;
+  border-radius: 8px;
   outline: none;
   cursor: pointer;
   user-select: none;
-  border: none;
+  border: solid 1px #353945;
   padding: 0 0.5rem;
   :focus,
   :hover {
@@ -43,7 +45,6 @@ const LabelRow = styled.div`
   color: ${({ theme }) => theme.colors.text};
   font-size: 0.75rem;
   line-height: 1rem;
-  padding: 0.75rem 1rem 0 1rem;
   span:hover {
     cursor: pointer;
     color: ${({ theme }) => darken(0.2, theme.colors.textSubtle)};
@@ -58,15 +59,20 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '8px')};
   z-index: 1;
 `
 const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.input};
-  box-shadow: ${({ theme }) => theme.shadows.inset};
+  box-shadow: none;
 `
+const StyledButton = styled(Button)`
+  padding: 16px;
+  background: -webkit-linear-gradient(109.32deg, #EB5757 -12.08%, #F2C94C 58.46%, #F2994A 127.54%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 interface CurrencyInputPanelProps {
   value: string
   onUserInput: (value: string) => void
@@ -113,7 +119,7 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <Text fontSize="14px">{translatedLabel}</Text>
+              <Text fontSize="16px" pb="5px">{translatedLabel}</Text>
               {account && (
                 <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
                   {!hideBalance && !!currency && selectedCurrencyBalance
@@ -135,9 +141,9 @@ export default function CurrencyInputPanel({
                 }}
               />
               {account && currency && showMaxButton && label !== 'To' && (
-                <Button onClick={onMax} scale="sm" variant="text">
+                <StyledButton onClick={onMax} scale="sm" variant="text">
                   MAX
-                </Button>
+                </StyledButton>
               )}
             </>
           )}
