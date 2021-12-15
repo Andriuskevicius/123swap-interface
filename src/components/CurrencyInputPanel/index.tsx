@@ -16,7 +16,7 @@ const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
   border-radius: 8px;
-  border: solid 1px #353945;
+  border: solid 1px ${({ theme }) => theme.colors.borderColor};
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
@@ -31,7 +31,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   outline: none;
   cursor: pointer;
   user-select: none;
-  border: solid 1px #353945;
+  border: solid 1px ${({ theme }) => theme.colors.borderColor};
   padding: 0 0.5rem;
   :focus,
   :hover {
@@ -63,7 +63,6 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   z-index: 1;
 `
 const Container = styled.div<{ hideInput: boolean }>`
-  background-color: ${({ theme }) => theme.colors.input};
   box-shadow: none;
 `
 const StyledButton = styled(Button)`

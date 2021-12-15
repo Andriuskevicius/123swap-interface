@@ -8,8 +8,8 @@ export const BodyWrapper = styled(Card)`
   width: 100%;
   z-index: 5;
   padding: 20px;
-  background: #18191D;
-  border: solid 1px #353945;
+  background: ${({ theme }) => theme.colors.secondBackground};
+  border: solid 1px ${({ theme }) => theme.colors.borderColor};
 `
 
 /**
