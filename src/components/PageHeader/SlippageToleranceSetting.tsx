@@ -29,6 +29,16 @@ const Options = styled.div`
     flex-direction: row;
   }
 `
+const Slippage = styled.div`
+  border: solid 1px #353945;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+`
+
 
 const predefinedValues = [
   { label: '0.1%', value: 0.1 },
@@ -74,7 +84,7 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
   }, [userSlippageTolerance, setError, translateString])
 
   return (
-    <Box mb="16px">
+    <Box pb="32px" borderBottom="solid 1px #353945">
       <Flex alignItems="center" mb="8px">
         <Text bold>{translateString(88, 'Slippage tolerance')}</Text>
         <QuestionHelper
@@ -91,14 +101,14 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
 
             return (
               <Option key={predefinedValue}>
-                <Button variant={value === predefinedValue ? 'primary' : 'tertiary'} onClick={handleClick}>
+                <Button variant={value === predefinedValue ? 'primary' : 'tertiary'} onClick={handleClick} style={{padding: "10px 25px"}}>
                   {label}
                 </Button>
               </Option>
             )
           })}
         </Flex>
-        <Flex alignItems="center">
+        <Slippage>
           <Option>
             <Input
               type="number"
@@ -114,7 +124,7 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
           <Option>
             <Text fontSize="18px">%</Text>
           </Option>
-        </Flex>
+        </Slippage>
       </Options>
       {error && (
         <Text mt="8px" color="failure">

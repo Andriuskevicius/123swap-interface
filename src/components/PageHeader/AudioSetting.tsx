@@ -11,7 +11,7 @@ const AudioSetting = ({ translateString }: AudioSettingModalProps) => {
   const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
 
   return (
-    <Box mb="16px">
+    <Box pt="20px" borderTop="solid 1px #353945">
       <Flex alignItems="center" mb="8px">
         <Text bold>{translateString(999, 'Audio')}</Text>
       </Flex>

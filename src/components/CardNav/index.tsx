@@ -5,14 +5,36 @@ import { ButtonMenu, ButtonMenuItem } from '@123swap/uikit'
 import useI18n from 'hooks/useI18n'
 
 const StyledNav = styled.div`
-  margin-bottom: 40px;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  max-width: 50%;
+  
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+  
+  a {
+    flex-basis: 100%;
+    color: #353945;
+    height: 25px;
+    padding: 5px 40px;
+    background: transparent !important;
+    border-radius: 0 !important;
+    
+    @media (max-width: 576px) {
+      padding: 5px 25px;
+    }
+  }
 `
 
 function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
   const TranslateString = useI18n()
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
+      <ButtonMenu activeIndex={activeIndex} variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {TranslateString(1142, 'Swap')}
         </ButtonMenuItem>

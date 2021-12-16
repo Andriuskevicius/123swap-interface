@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`
-  padding: 2px;
+  padding-top: 20px;
 
   ${({ clickable }) =>
     clickable
@@ -30,7 +30,7 @@ export const SectionBreak = styled.div`
 `
 
 export const BottomGrouping = styled.div`
-  margin-top: 1rem;
+  margin-top: 2.5rem;
 `
 
 export const ErrorText = styled(Text)<{ severity?: 0 | 1 | 2 | 3 | 4 }>`
@@ -116,7 +116,7 @@ const SwapCallbackErrorInnerAlertTriangle = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 12px;
-  border-radius: 12px;
+  border-radius: 8px;
   min-width: 48px;
   height: 48px;
 `
@@ -136,6 +136,6 @@ export const SwapShowAcceptChanges = styled(AutoColumn)`
   background-color: ${({ theme }) => transparentize(0.9, theme.colors.primary)};
   color: ${({ theme }) => theme.colors.primary};
   padding: 0.5rem;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-top: 8px;
 `
