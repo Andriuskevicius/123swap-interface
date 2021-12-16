@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from 'react'
 import BigNumber from 'bignumber.js'
 import { Menu as UikitMenu} from '@123swap/uikit'

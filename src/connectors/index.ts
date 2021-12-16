@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ConnectorNames } from '@123swap/uikit'
 import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'

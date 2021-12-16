@@ -7,9 +7,14 @@ import QuestionHelper from '../QuestionHelper'
 const Field = styled.div`
   align-items: center;
   display: inline-flex;
+  border: solid 1px #353945;
+  border-radius: 8px;
 
   & > ${Input} {
-    max-width: 100px;
+    max-width: 400px;
+  }
+  & > div {
+    padding-right: 15px;
   }
 `
 
@@ -43,7 +48,7 @@ const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSett
   }, [value, setError, setDeadline, translateString])
 
   return (
-    <Box mb="16px">
+    <Box mb="30px" mt="25px">
       <Flex alignItems="center" mb="8px">
         <Text bold>{translateString(90, 'Transaction deadline')}</Text>
         <QuestionHelper

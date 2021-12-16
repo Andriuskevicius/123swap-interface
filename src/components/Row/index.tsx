@@ -19,6 +19,10 @@ export const RowFlat = styled.div`
   display: flex;
   align-items: flex-end;
 `
+export const RowStart = styled.div`
+  display: flex;
+  align-items: flex-start;
+`
 
 export const AutoRow = styled(Row)<{ gap?: string; justify?: string }>`
   flex-wrap: wrap;

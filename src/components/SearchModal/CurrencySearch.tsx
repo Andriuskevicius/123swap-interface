@@ -150,8 +150,9 @@ export function CurrencySearch({
 
   const selectedListInfo = useSelectedListInfo()
   const TranslateString = useI18n()
+
   return (
-    <Column style={{ width: '100%', flex: '1 1' }}>
+    <Column style={{ width: '100%', flex: '1 1', background: "#18191D"}}>
       <PaddedColumn gap="14px">
         <RowBetween>
           <Text>

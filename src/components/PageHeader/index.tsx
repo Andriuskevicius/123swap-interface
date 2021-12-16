@@ -13,7 +13,9 @@ interface PageHeaderProps {
 
 const StyledPageHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
-  padding: 24px;
+  margin: 24px;
+  margin-bottom: 0;
+  padding-bottom: 24px;
 `
 
 const Details = styled.div`
@@ -37,14 +39,14 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
           )}
         </Details>
         <IconButton variant="text" onClick={onPresentSettings} title={TranslateString(1200, 'Settings')}>
-          <TuneIcon width="24px" color="currentColor" />
+          <TuneIcon width="24px" />
         </IconButton>
         <IconButton
           variant="text"
           onClick={onPresentRecentTransactions}
           title={TranslateString(1202, 'Recent transactions')}
         >
-          <HistoryIcon width="24px" color="currentColor" />
+          <HistoryIcon width="24px" color="transparent" />
         </IconButton>
       </Flex>
       {children && <Text mt="16px">{children}</Text>}
