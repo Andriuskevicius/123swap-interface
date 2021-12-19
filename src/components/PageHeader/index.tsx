@@ -46,7 +46,7 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
           onClick={onPresentRecentTransactions}
           title={TranslateString(1202, 'Recent transactions')}
         >
-          <HistoryIcon width="24px" color="transparent" />
+          <HistoryIcon width="24px" color="contrast" />
         </IconButton>
       </Flex>
       {children && <Text mt="16px">{children}</Text>}

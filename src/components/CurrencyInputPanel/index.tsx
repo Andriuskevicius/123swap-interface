@@ -16,10 +16,24 @@ const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
   border-radius: 8px;
+  background: ${({ theme }) => theme.colors.secondBackground};
   border: solid 1px ${({ theme }) => theme.colors.borderColor};
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  
 `
+const InputRowWrapper = styled.div`
+  position: relative;
+  background: linear-gradient(109.32deg, #EB5757 -12.08%, #F2C94C 58.46%, #F2994A 127.54%);;
+  border-radius: 8px;
+  :focus-within {
+    padding: 2px;
+    margin: -2px;
+  }
+
+`
+
+
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
   height: 34px;
@@ -129,6 +143,7 @@ export default function CurrencyInputPanel({
             </RowBetween>
           </LabelRow>
         )}
+        <InputRowWrapper>
         <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} selected={disableCurrencySelect}>
           {!hideInput && (
             <>
@@ -179,6 +194,7 @@ export default function CurrencyInputPanel({
             </Aligner>
           </CurrencySelect>
         </InputRow>
+      </InputRowWrapper>
       </Container>
       {!disableCurrencySelect && onCurrencySelect && (
         <CurrencySearchModal
