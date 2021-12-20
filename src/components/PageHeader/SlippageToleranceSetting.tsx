@@ -30,7 +30,7 @@ const Options = styled.div`
   }
 `
 const Slippage = styled.div`
-  border: solid 1px #353945;
+  border: solid 1px ${({ theme }) => theme.colors.borderColor};
   border-radius: 8px;
   width: 100%;
   display: flex;

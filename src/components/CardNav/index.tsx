@@ -18,7 +18,6 @@ const StyledNav = styled.div`
   
   a {
     flex-basis: 100%;
-    color: #353945;
     height: 25px;
     padding: 5px 40px;
     background: transparent !important;

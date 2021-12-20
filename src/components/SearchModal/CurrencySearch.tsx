@@ -139,7 +139,7 @@ export function CurrencySearch({
   const TranslateString = useI18n()
 
   return (
-    <Column style={{ width: '100%', flex: '1 1', background: "#18191D"}}>
+    <Column style={{ width: '100%', flex: '1 1', background: theme.colors.secondBackground}}>
       <PaddedColumn gap="14px">
         <RowBetween>
           <Text>
