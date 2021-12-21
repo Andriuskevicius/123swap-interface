@@ -116,17 +116,19 @@ export default function Tokensale() {
     
   return (
     <>
-      <TokensaleCardNav />
+    <Flex maxWidth="736px" width="100%" alignItems="left" pb="40px">
+      <Heading mb="8px">Tokensale (PRIVATE)</Heading>
+    </Flex>
       <AppBody>
         <StyledPageHeader>
-          <Flex alignItems="center">
-            <Details>
-              <Heading mb="8px">Tokensale (PRIVATE)</Heading>
-                <Text color="textSubtle" fontSize="16px">
-                   Private sale ongoing <a style={{color: "#f7941e", fontWeight: 500}} href="mailto:ceo@123swap.finance">ceo@123swap.finance</a>
-                </Text>
-            </Details>
-          </Flex>
+          <TokensaleCardNav />
+            <Flex alignItems="center">
+              <Details>
+                  <Text color="textSubtle" fontSize="16px">
+                    Private sale ongoing <a style={{color: "#f7941e", fontWeight: 500}} href="mailto:ceo@123swap.finance">ceo@123swap.finance</a>
+                  </Text>
+              </Details>
+            </Flex>
         </StyledPageHeader>
       </AppBody>
     </>

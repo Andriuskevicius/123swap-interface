@@ -6,6 +6,19 @@ import useI18n from 'hooks/useI18n'
 
 const StyledNav = styled.div`
   margin-bottom: 40px;
+  text-align: center;
+  & div {
+    background: ${({ theme }) => theme.colors.inputSecondary};
+    border-radius: 50px;
+    padding: 2px;
+  }
+  & a {
+    border: 0 !important;
+    color: ${({ theme }) => theme.colors.contrast};
+    padding: 5px 15px;
+    height: 29px;
+
+  }
 `
 
 function TokensaleNav({ activeIndex = 0 }: { activeIndex?: number }) {
