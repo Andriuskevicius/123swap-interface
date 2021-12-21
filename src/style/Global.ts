@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     background-image: ${({ theme }) => (theme.isDark ? `${darkBg}` : '#fff')};
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
     
     img {
       height: auto;
