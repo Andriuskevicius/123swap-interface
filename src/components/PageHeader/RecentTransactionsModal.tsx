@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Text, Modal, Button } from '@123swap/uikit'
+import styled from "styled-components";
 import { useActiveWeb3React } from 'hooks'
 import { getBscScanLink } from 'utils'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
@@ -40,24 +41,37 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss, translateString
     return txs.filter(isTransactionRecent).sort(newTransactionsFirst)
   }, [allTransactions])
 
+const StyledFlex = styled(Flex)`
+  background: ${({ theme }) => theme.colors.inputSecondary};
+  border-radius: 8px;
+  padding-top: 5px;
+
+`
+
+const StyledModal = styled(Modal)`
+  max-width: 90%;
+
+  @media (min-width: 768px) { {
+    min-width: 600px;
+  }
+
+`
+
   return (
-    <Modal style={{maxWidth: "90%"}} title={translateString(1202, 'Recent transactions')} onDismiss={onDismiss}>
+    <StyledModal title={translateString(1202, 'Recent transactions')} onDismiss={onDismiss}>
       {!account && (
-        <Flex justifyContent="center" flexDirection="column" alignItems="center" background="rgba(255,255,255,.15)" borderRadius="8px">
+        <StyledFlex justifyContent="center" flexDirection="column" alignItems="center" borderRadius="8px">
           <Text m="15px" bold>
             Please connect your wallet to view your recent transactions
           </Text>
-        </Flex>
+        </StyledFlex>
       )}
       {account && chainId && sortedRecentTransactions.length === 0 && (
-        <Flex justifyContent="center" flexDirection="column" alignItems="center">
+        <StyledFlex justifyContent="center" flexDirection="column" alignItems="center">
           <Text mb="8px" bold>
             No recent transactions
           </Text>
-          <Button variant="tertiary" scale="sm" onClick={onDismiss}>
-            Close
-          </Button>
-        </Flex>
+        </StyledFlex>
       )}
       {account &&
         chainId &&
@@ -76,7 +90,7 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss, translateString
             </>
           )
         })}
-    </Modal>
+    </StyledModal>
   )
 }
 
