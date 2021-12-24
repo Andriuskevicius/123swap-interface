@@ -112,6 +112,14 @@ export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?:
 export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: CurrencyAmount): Trade | null {
   const allowedPairs = useAllCommonPairs(currencyIn, currencyAmountOut?.currency)
 
+  if (currencyIn !== undefined) {
+      currencyIn = getTradeCurrencyFromBase(currencyIn);
+  }
+
+  if (currencyAmountOut !== undefined){
+      currencyAmountOut.currency = getTradeCurrencyFromBase(currencyAmountOut.currency);
+  }
+
   return useMemo(() => {
     if (currencyIn && currencyAmountOut && allowedPairs.length > 0) {
       return (
