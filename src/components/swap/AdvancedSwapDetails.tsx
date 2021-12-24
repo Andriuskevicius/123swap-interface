@@ -92,8 +92,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
           <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
           {showRoute && (
             <>
-              <SectionBreak />
-              <AutoColumn style={{ padding: '0 24px' }}>
+              <AutoColumn style={{ padding: '24px 0' }}>
                 <RowFixed>
                   <Text fontSize="14px">Route</Text>
                   <QuestionHelper

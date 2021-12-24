@@ -15,12 +15,22 @@ import AppBody from '../AppBody'
 import { MouseoverTooltip } from '../../components/Tooltip'
 
 const StyledPageHeader = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
   padding: 24px;
+  padding-bottom: 0;
 `
 
 const Details = styled.div`
   flex: 1;
+`
+
+const StyledTable = styled.table`
+  & thead {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+  }
+  & thead tr th {
+    padding-bottom: 8px;
+    color: ${({ theme }) => theme.colors.textMenu};
+  }
 `
 
 const PRESALE_RECEIVER_ADDRESS = process.env.REACT_APP_PRESALE_RECEIVER_ADDRESS ?? ""
@@ -78,13 +88,7 @@ export default function TokensaleHistory() {
 
   return (
     <>
-
-      <TokensaleCardNav activeIndex={1} />
-
-      <AppBody>
-
-        <StyledPageHeader>
-      <Flex alignItems="center">
+      <Flex maxWidth="736px" width="100%" pb="40px" alignItems="left">
         <Details>
           <Heading mb="8px">Tokensale history</Heading>
             <Text color="textSubtle" fontSize="14px">
@@ -92,6 +96,9 @@ export default function TokensaleHistory() {
             </Text>
         </Details>
       </Flex>
+      <AppBody>
+        <StyledPageHeader>
+        <TokensaleCardNav activeIndex={1} />
         </StyledPageHeader>
       <CardBody>
         <AutoColumn gap="md">
@@ -99,7 +106,7 @@ export default function TokensaleHistory() {
         {!account ? (
             <ConnectWalletButton width="100%" />
         ) : (
-            <table>
+            <StyledTable>
                 <thead>
                     <tr style={{fontWeight:600, textAlign:"left"}}>
                         <th style={{fontWeight:600}}>Currency</th>
@@ -112,10 +119,10 @@ export default function TokensaleHistory() {
                 <tbody>
                     {orderList}
                 </tbody>
-            </table>
+            </StyledTable>
             )}
 
-        <RowBetween align="center">
+        <RowBetween align="center" mt="5px">
             <Text fontSize="16px">{TranslateString(88, 'Total token amount')}</Text>
             <Text fontSize="16px" style={{fontWeight:600}}>{tokenAmount}</Text>
           </RowBetween>

@@ -51,15 +51,19 @@ const BodyWrapper = styled.div`
   background-size: 90%;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
+    background-image: url('/images/arch-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.svg'),
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 93.6vh;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url('/images/arch-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.svg'),
     background-repeat: no-repeat;
-    background-position: center 420px, 10% 230px, 90% 230px;
-    background-size: contain, 266px, 266px;
-    min-height: 90vh;
+    background-position: center;
+    background-size: cover;
+    min-height: 93.6vh;
   }
 `
 
