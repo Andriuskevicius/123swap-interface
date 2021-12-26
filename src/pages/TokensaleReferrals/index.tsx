@@ -16,6 +16,19 @@ import AppBody from '../AppBody'
 const StyledPageHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
   padding: 24px;
+  @media screen and (max-width:736px) {
+    padding: 0;
+  }
+`
+
+const StyledRowBetween = styled(RowBetween)`
+  flex-wrap: wrap;
+  a, button {
+    width: 100%;
+  }
+  button {
+    margin-bottom: 7px;
+  }
 `
 
 const Details = styled.div`
@@ -95,7 +108,7 @@ export default function TokensaleReferrals() {
                     <StyledInput type="text" readOnly value={url}/>
                     <Text color="textMenu" paddingBottom="5px" paddingTop="10px" fontSize="12px">{TranslateString(88, 'Share via:')}</Text>
 
-                    <RowBetween align="center">
+                    <StyledRowBetween align="center">
                       <a rel="noreferrer" target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}>
                         <StyledButton type="button"><i className="fa fa-facebook"/>Facebook</StyledButton>
                       </a>
@@ -105,7 +118,7 @@ export default function TokensaleReferrals() {
                       <a rel="noreferrer" href={`mailto:?subject=123swap Tokensale Referral&body=My 123swap Tokensale referral link: ${url}`}>
                         <StyledButton type="button" className="btn"><i className="fa fa-envelope"/>Email</StyledButton>
                       </a>
-                    </RowBetween>
+                    </StyledRowBetween>
                     <StyledDiv>
                     <Text fontSize="18px" fontWeight="600">{TranslateString(88, 'Your bonuses')}</Text>
                      <RowBetween align="center">
