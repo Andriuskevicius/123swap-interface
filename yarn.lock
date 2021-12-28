@@ -33,10 +33,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@123swap/uikit@^0.23.51":
-  version "0.23.51"
-  resolved "https://registry.yarnpkg.com/@123swap/uikit/-/uikit-0.23.51.tgz#19158ef5b6f6640688a3fcd5e14c74422ddfb961"
-  integrity sha512-77TqvXRETTFIqUyh8favpduCnGx9o5u7kxzs4Lkygi+EHf6GhGz9Zt58btwd3+i1jThZhIerjyJec6QEBAlk8A==
+"@123swap/uikit@^0.23.52":
+  version "0.23.52"
+  resolved "https://registry.yarnpkg.com/@123swap/uikit/-/uikit-0.23.52.tgz#102a292893c69c0a6302bdd9b3cdee6cb7dfe6fd"
+  integrity sha512-vTIJvHnCUv0T+vBDKtfpad06k+/g+agoS5MtgqOr2A7kF0DoVlQCWhd21AL1shdEPeB3xDNnRgMZG+Bl+xS4Ng==
   dependencies:
     "@types/lodash" "^4.14.168"
     "@types/styled-system" "^5.1.10"

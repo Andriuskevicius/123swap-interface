@@ -27,6 +27,9 @@ import { useCurrencyBalance } from '../../state/wallet/hooks';
 const StyledPageHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
   padding: 24px;
+  @media screen and (max-width:736px) {
+    padding: 0;
+  }
 `
 
 const Details = styled.div`

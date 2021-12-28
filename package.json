@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@123swap/swap-sdk": "^2.3.24",
-    "@123swap/uikit": "^0.23.51",
+    "@123swap/uikit": "^0.23.53",
     "@ac32/spookyswap-sdk": "^1.0.0",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",

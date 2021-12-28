@@ -17,6 +17,9 @@ import { MouseoverTooltip } from '../../components/Tooltip'
 const StyledPageHeader = styled.div`
   padding: 24px;
   padding-bottom: 0;
+  @media screen and (max-width:736px) {
+    padding: 0;
+  }
 `
 
 const Details = styled.div`
