@@ -22,9 +22,11 @@ const StyledPageHeader = styled.div`
 `
 
 const StyledRowBetween = styled(RowBetween)`
-  flex-wrap: wrap;
-  a, button {
-    width: 100%;
+  @media screen and (max-width:736px) {  
+    flex-wrap: wrap;
+    a, button {
+      width: 100%;
+    }
   }
   button {
     margin-bottom: 7px;
